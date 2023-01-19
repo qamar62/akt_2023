@@ -1,0 +1,16 @@
+
+{% extends 'visa\base.html' %}
+
+
+{% block visa %}
+<div class="form-group container mt-5">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+    
+        <button type="submit" class="btn btn-success"> Submit</button>
+    </form>
+    </div>
+
+
+    {% endblock visa %}

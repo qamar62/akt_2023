@@ -1,0 +1,50 @@
+{% extends 'frontend/main1.html' %}
+{% load static %}
+
+{% block title %}
+    {{post.title}}  
+	 {% endblock title %}
+
+
+
+{% block main1content %}
+
+    {% include 'frontend/header_1.html' %}
+
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+
+    <section class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/img/bg_blog.jpg' %}" data-natural-width="1400" data-natural-height="470">
+		<div class="parallax-content-1">
+			<div class="animated fadeInDown">
+				<h1>Tour Blog</h1>
+				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+			</div>
+		</div>
+	</section>
+	<!-- End section -->
+
+    <main>
+
+        <h2 class="mt-5 text-center">Add Comments</h2>
+    <div class="form-group container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="reset" class="btn_1" value="Clear form" />
+            <button type="submit mb-2" class="btn btn-success">Submit</button>
+        </form>
+        
+    </div>
+
+</main>
+
+
+
+
+
+
+
+
+
+{% include 'frontend/footer.html' %}    
+{% endblock main1content %}

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" {% block html %}data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="sm-hover"{% endblock html %}>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock title %} | Arabian Nights Tours - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Arabian Nights Tours" name="QAM" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'images/logo.png'%}">
+
+    {% block css %}
+    {% block extra_css %}
+    {% endblock extra_css %}
+   
+
+    <!-- Layout config Js -->
+    <script src="{% static 'assets/js/layout.js"></script>
+    <!-- Bootstrap Css -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{% static 'assets/css/app.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{% static 'assets/css/custom.min.css' %}" rel="stylesheet" type="text/css" />
+    
+    {% endblock css %}
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        {% block header %}
+        {% include "dashboard/partials/topbar.html" %}
+        {% endblock header %}
+        {% block sidebar %}
+        {% include "dashboard/partials/sidebar.html" %}
+        {% endblock sidebar %}
+        {% block content %}
+        {% block pagetitle %}
+        {% endblock pagetitle %}
+        {% block footer %}
+        {% endblock footer %}
+        {% endblock content %}
+    </div>
+  
+    
+    {% block extra_content %}        
+    {% endblock extra_content %}
+        
+    <!-- END layout-wrapper -->
+    {% block right_sidebar %}
+    {% include "dashboard/partials/customizer.html" %}
+    {% endblock right_sidebar %}
+
+    {% block javascript %}
+        
+    
+
+    
+     <!-- JAVASCRIPT -->
+     <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+     <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %}"></script>
+     <script src="{% static 'assets/libs/node-waves/waves.min.js' %}"></script>
+     <script src="{% static 'assets/libs/feather-icons/feather.min.js' %}"></script>
+     <script src="{% static 'assets/js/pages/plugins/lord-icon-2.1.0.js' %}"></script>
+     <script src="{% static 'assets/js/plugins.js' %}"></script>
+    
+  
+
+    {% block extra_js %}
+    {% endblock extra_js %}
+
+   <!-- App js -->
+   <script src="{% static 'assets/js/app.js' %}"></script>
+    
+    
+    {% endblock javascript %}
+
+</body>
+
+</html>

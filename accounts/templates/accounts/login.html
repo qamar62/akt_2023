@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #04294e !important;
+      }
+      .user_card {
+        width: 350px;
+        margin-top: auto;
+        margin-bottom: auto;
+        background: #0056ae;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        color: white;
+
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 25px;
+      }
+
+      .form_container {
+        margin-top: 20px;
+      }
+
+      #form-title {
+        color: #fff;
+      }
+
+      .login_btn {
+        width: 100%;
+        background: #04294e !important;
+        color: white !important;
+        box-shadow: 0px 5px 2px #9c0a16;
+      }
+
+      .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+      }
+      .login_container {
+        padding: 0 2rem;
+      }
+      .input-group-text {
+        background: #ee2434 !important;
+        color: white !important;
+        border: 0 !important;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+      }
+      .input_user,
+      .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+      }
+
+      #messages {
+        background-color: grey;
+        color: #fff;
+        padding: 10px;
+        margin-top: 10px;
+      }
+
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 15vh;
+        margin-bottom: -7px; /*Fix for safari gap*/
+        min-height: 100px;
+        max-height: 150px;
+      }
+
+      /* Animation */
+     
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+
+      /*Shrinking for mobile*/
+      @media (max-width: 768px) {
+        .waves {
+          height: 40px;
+          min-height: 40px;
+        }
+        .content {
+          height: 30vh;
+        }
+        h1 {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5 ">
+      <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+          <div class="d-flex justify-content-center">
+            <h3 id="form-title">LOGIN</h3>
+          </div>
+          <div class="d-flex justify-content-center form_container">
+            <form method="POST" action="">
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                <div class="input-group-append">
+                  <span class="input-group-text"
+                    ><i class="fas fa-user"></i
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username..."
+                  class="form-control"
+                />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-append">
+                  <span class="input-group-text"
+                    ><i class="fas fa-key"></i
+                  ></span>
+                </div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password..."
+                  class="form-control"
+                />
+              </div>
+
+              <div class="d-flex justify-content-center mt-3 login_container">
+                <input class="btn login_btn" type="submit" value="Login" />
+              </div>
+            </form>
+          </div>
+          <div class="alert">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor%}
+          </div>
+
+          <div class="mt-4">
+            <div class="d-flex justify-content-center links">
+              Don't have an account?
+              <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+            </div>
+
+            <div class="d-flex justify-content-center links">
+              Forgot Password?
+              <a href="{% url 'reset_password' %}" class="ml-2"
+                >Reset Password</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Waves Container-->
+    <div class="mt-5 ">
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax">
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(255,255,255,0.7"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="3"
+            fill="rgba(255,255,255,0.5)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="5"
+            fill="rgba(255,255,255,0.3)"
+          />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+{% extends 'frontend/main1.html' %}
+
+{% load static %}
+
+{% block title %}
+Arabian Nights Tours | Dubai Trasnfers 
+{% endblock title %}
+
+
+
+{% block main1content %}
+
+    {% include 'frontend/header_1.html' %}
+    
+<main>
+    	<!-- img  1400 x 470 -->
+	<section class="parallax-window" data-parallax="scroll" data-image-src="/static/images/italy.jpg" data-natural-width="1400" data-natural-height="">
+
+		<div class="parallax-content-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<h1>Outbound Tours</h1>
+						<span>Paris | Baku | Mali | Spain | Georgia | Armenia </span>
+						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+					</div>
+					<div class="col-md-4">
+						<div id="price_single_main">
+							from/per person <span><sup>AED</sup>Price</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End section -->
+<div class="container margin_60">
+
+        <div class="main_title">
+            <h2>EUROPE <span>Top</span> Tours</h2>
+            <p>Explore world with us | Book online or contact us 24/7  </p>
+        </div>
+    
+
+    <div class="row">
+        {% for tour in outbounds_tours %}
+    <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+        <div class="tour_container">
+            <div class="ribbon_3 popular"><span>Popular</span></div>
+            <div class="img_container">
+                <a href="{% url 'outbound-detail' tour.slug %}">
+                    <img src="{{tour.thumbnail.url}}" width="800" height="533" class="img-fluid" alt="image">
+                   <!-- <div class="badge_save">Save<strong>30%</strong></div>-->
+                    {% for price in tour.price.all %}
+                    <div class="short_info">
+                        
+                        <i class="icon_set_1_icon-44"></i>{{tour.no_of_days}} Days {{tour.no_of_nights}} Nights<span class="price"><sup>AED{{price.price}}</sup></span>
+                       
+                    </div>
+                    {% endfor %}
+                </a>
+            </div>
+            <div class="tour_title">
+                <h3><strong>{{tour.name}}</strong> tour</h3>
+                <div class="rating">
+                    <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
+                </div>
+                <!-- end rating -->
+                <div class="wishlist">
+                    <a class="tooltip_flip" href="{% url 'user_wishlist' otour.id %}"></a>
+                </div>
+                <!-- End wish list-->
+            </div>
+        </div>
+        <!-- End box tour -->
+    </div>
+    <!-- End col -->
+    {% endfor %}
+    </div> 
+   
+
+</div>
+    
+
+</main>
+
+
+
+
+
+{% include "frontend/footer.html" %}
+{% endblock main1content %}

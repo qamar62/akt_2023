@@ -1,0 +1,19 @@
+{% extends 'accounts/main.html'%} 
+
+{% load static %}
+
+{% block content %}
+<div class="container form-group">
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+    
+    
+   {{form}}
+    <hr>
+    
+    <input type="submit" name="submit" id="">
+</form>
+</div>
+{% endblock %}

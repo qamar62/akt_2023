@@ -1,0 +1,63 @@
+{% extends 'visa\base.html' %} 
+
+
+
+{% block visa %}
+{% include 'visa/visa_navbar.html' %}
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Agent</th>
+            <th scope="col">Name</th>
+            <th scope="col">Passport # </th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Type</th>
+            {% if user.is_superuser == True %}
+            <th scope="col">Price</th>
+            {% endif %}
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+            {% for visa in visas %}
+             
+                {% if request.user == visa.agent.name %}
+                  <tr>
+                    <th scope="row">{{visa.id}}</th>
+                    <td>{{visa.agent.agent_code}}</td>
+                    <td>{{visa.guest_name}}</td>
+                    <td>{{visa.guest_passport_number}}</td>
+                    <td>{{visa.guest_nationality}}</td>
+                    <td>{{visa.guest_gender}}</td>
+                    
+                    <td>{{visa.visa_type.title}}</td>
+                    
+                    {% if user.is_superuser == True %}
+                    <td>{{visa.visa_price.price}}<sub>{{visa.visa_price.currency}}</sub></td>
+                    {% endif %}
+                    {% if visa.visa_status == "APPROVED" %}
+                    <td><button class="btn btn-success">{{visa.visa_status}}</button></td>
+                    {% else %}
+                    <td><button class="btn btn-danger">{{visa.visa_status}}</button></td>
+                    {% endif %}
+                  </tr>
+                  
+                
+                  
+            {% endif %}
+           
+          {% endfor %}
+          
+         
+          
+        </tbody>
+      </table>
+
+
+      {% endblock visa %}
+
+
+   

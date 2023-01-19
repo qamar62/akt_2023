@@ -1,0 +1,225 @@
+{% extends 'frontend/main1.html' %}
+{% load static %}
+
+
+{% block custom_css %}
+<link href="{% static 'css/shop.css' %}" rel="stylesheet">
+{% endblock custom_css%}
+
+
+{% block main1content %}
+
+
+
+
+<section class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/img/header_bg.jpg' %}" data-natural-width="1400" data-natural-height="470">
+    <div class="parallax-content-1">
+        <div class="animated fadeInDown">
+            <h1>Booking cart</h1>
+            <p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+        </div>
+    </div>
+</section>
+<!-- End Section -->
+
+<main>
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="{% url  'home' %}">Home</a>
+                </li>
+                <li><a href="#">Outbound </a>
+                </li>
+                <li>Check Out</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Position -->
+
+    <div class="container margin_60">
+        <div class="checkout-page">
+
+            <ul class="default-links">
+                <li>Exisitng Customer? <a href="{% url 'login' %}">Click here to login</a>
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col-lg-7">
+
+                    <div class="billing-details">
+                        <div class="shop-form">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                <div class="default-title">
+                                    <h2>Booking Details</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <label>First name <sup>*</sup>
+                                        </label>
+                                        <input type="text" name="first_name" value="" placeholder="" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <label>Last name <sup>*</sup>
+                                        </label>
+                                        <input type="text" name="last_name" value="" placeholder="" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <label>Email Address <sup>*</sup>
+                                        </label>
+                                        <input type="email" name="email" value="" placeholder="" class="form-control">
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <label>Phone <sup>*</sup>
+                                        </label>
+                                        <input type="text" name="phone" value="" placeholder="" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <label>Country <sup>*</sup>
+                                        </label>
+                                        <input type="text" name="country" value="" placeholder="" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <label>Extra options <sup>*</sup>
+                                        </label>
+                                        <select name="state" class="form-control">
+                                            <option>City</option>
+                                            <option>Maharshtra</option>
+                                            <option>NY</option>
+                                            <option>ALabama</option>
+                                            <option>Mexico</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="check-box">
+                                            <input type="checkbox" name="shipping-option" id="account-option"> &ensp;
+                                            <label for="account-option">Create an account?</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label>Booking note</label>
+                                        <textarea  name="booking_note" placeholder="Notes about your order, e.g. special notes for delivery" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Billing Details-->
+                </div>
+                <!--End Col-->
+
+                <div class="col-lg-5">
+                    <div class="your-order">
+                        <div class="default-title">
+                            <h2>Your Booking</h2>
+                        </div>
+                        <ul class="orders-table">
+                            <li class="table-header clearfix">
+                                <div class="col">
+                                    <strong>Tour</strong>
+                                </div>
+                                <div class="col">
+                                    <strong>Total</strong>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="col" style="text-transform:none;">
+                                    <img src="{{otour.thumbnail.url}}" width="50" height="50" alt=""> {{ otour.name }}
+                                </div>
+                                <div class="col second">
+                                    {% for price in otour.price.all%}
+								AED {{price.price}}
+							{% endfor %}
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="col" style="text-transform:none;">
+                                    SubTotal
+                                </div>
+                                <div class="col second">
+                                    $15.00
+                                </div>
+                            </li>
+                            <li class="clearfix total">
+                                <div class="col">
+                                    <strong>Order Total</strong>
+                                </div>
+                                <div class="col second">
+                                    <strong>$15.00</strong>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="coupon-code">
+                            <div class="form-group">
+                                <div class="field-group">
+                                    <input type="text"  value="" placeholder="Coupon Code" class="form-control">
+                                </div>
+                                <div class="field-group btn-field">
+                                    <button type="" class="btn_cart_outine">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Your Order-->
+
+                    <div class="place-order">
+                        <div class="default-title">
+                            <h2>Payment Method</h2>
+                        </div>
+                        <div class="payment-options">
+                            <ul>
+                                <li>
+                                    <div class="radio-option">
+                                        <input type="radio" name="paymentMode" id="payment-1" value="Bank Transfer">
+                                        <label for="payment-1">Bank Transfer<span class="small-text">For bank detail call at our office +971 4 321 6565</span>
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="radio-option">
+                                        <input type="radio" name="paymentMode" id="payment-2" value="Cash On Pickup">
+                                        <label for="payment-2">Cash On Pickup</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="radio-option">
+                                        <input type="radio" name="paymentMode" id="payment-3" value="Paypal">
+                                        <label for="payment-3">Paypal<img src="{% static 'images/img/credit-card-icon.png' %}" alt="">
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="submit" class="btn_full">Book </button>
+                        
+                    </form>
+                    </div>
+                    <!--End Place Order-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Container -->
+</main>
+<!-- End main -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% include "frontend/footer.html" %}
+
+{% endblock main1content %}

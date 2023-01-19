@@ -1,0 +1,39 @@
+{% extends 'frontend/main1.html' %}
+{% load static %}
+
+
+
+
+{% block main1content %}
+
+   
+
+    <!-- <section class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/img/bg_blog.jpg' %}" data-natural-width="1400" data-natural-height="470">
+		<div class="parallax-content-1">
+			<div class="animated fadeInDown">
+				<h1>Add Post</h1>
+				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+			</div>
+		</div>
+	</section> -->
+	<!-- End section -->
+<main>
+    <center>
+	<div class="form-group container mt-5">
+<form method="POST">
+    {% csrf_token %}
+    <div class="container">
+            <h3><strong>Are you sure?!</strong></h3>
+    </div>
+    
+
+    <button type="submit" class="btn btn-outline-danger"> Delete</button>
+</form>
+</div>
+</center>
+</main>  
+
+
+
+{% include 'frontend/footer.html' %}  
+{% endblock main1content %}

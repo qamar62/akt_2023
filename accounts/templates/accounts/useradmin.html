@@ -1,0 +1,428 @@
+
+{% extends 'frontend/main1.html' %}
+{% load static %}
+
+
+{% block custom_css %}
+<link href="{% static 'css/admin.css' %}" rel="stylesheet">
+{% endblock custom_css%}
+
+
+{% block main1content %}
+{% include 'frontend/header_1.html' %}
+
+	<section class="parallax-window" data-parallax="scroll" data-image-src="/static/images/img/admin_top.jpg" data-natural-width="1400" data-natural-height="470">
+		<div class="parallax-content-1">
+			<div class="animated fadeInDown">
+				<h1>Hello Clara!</h1>
+				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+			</div>
+		</div>
+	</section>
+	<!-- End section -->
+
+	<main>
+		<div id="position">
+			<div class="container">
+				<ul>
+					<li><a href="{% url 'home' %}">Home</a>
+					</li>
+					
+					<li>Account Setting</li>
+				</ul>
+			</div>
+		</div>
+		<!-- End Position -->
+
+		<div class="margin_60 container">
+			<div id="tabs" class="tabs">
+				<nav>
+					<ul>
+						<li><a href="#section-1" class="icon-booking"><span>Bookings</span></a>
+						</li>
+						<li><a href="#section-2" class="icon-wishlist"><span>Wishlist</span></a>
+						</li>
+						<li><a href="#section-3" class="icon-settings"><span>Settings</span></a>
+						</li>
+						<li><a href="#section-4" class="icon-profile"><span>Profile</span></a>
+						</li>
+					</ul>
+				</nav>
+				<div class="content">
+
+					<section id="section-1">
+						<div id="tools">
+							<div class="row">
+								<div class="col-lg-2 col-md-3 col-6">
+									<div class="styled-select-filters">
+										<select name="sort_type" id="sort_type">
+											<option value="" selected>Sort by type</option>
+											<option value="tours">Tours</option>
+											<option value="hotels">Hotels</option>
+											<option value="transfers">Transfers</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-3 col-6">
+									<div class="styled-select-filters">
+										<select name="sort_date" id="sort_date">
+											<option value="" selected>Sort by date</option>
+											<option value="oldest">Oldest</option>
+											<option value="recent">Recent</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--/tools -->
+
+						<div class="strip_booking">
+							<div class="row">
+								<div class="col-lg-2 col-md-2">
+									<div class="date">
+										<span class="month">Dec</span>
+										<span class="day"><strong>23</strong>Sat</span>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-5">
+									<h3 class="hotel_booking">Hotel Mariott Paris<span>2 Adults / 2 Nights</span></h3>
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<ul class="info_booking">
+										<li><strong>Booking id</strong> 23442</li>
+										<li><strong>Booked on</strong> Sat. 23 Dec. 2015</li>
+									</ul>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="booking_buttons">
+										<a href="#0" class="btn_2">Edit</a>
+										<a href="#0" class="btn_3">Cancel</a>
+									</div>
+								</div>
+							</div>
+							<!-- End row -->
+						</div>
+						<!-- End strip booking -->
+
+						<div class="strip_booking">
+							<div class="row">
+								<div class="col-lg-2 col-md-2">
+									<div class="date">
+										<span class="month">Dec</span>
+										<span class="day"><strong>27</strong>Fri</span>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-5">
+									<h3 class="tours_booking">Louvre Museum<span>2 Adults / 2 Childs</span></h3>
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<ul class="info_booking">
+										<li><strong>Booking id</strong> 23442</li>
+										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
+									</ul>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="booking_buttons">
+										<a href="#0" class="btn_2">Edit</a>
+										<a href="#0" class="btn_3">Cancel</a>
+									</div>
+								</div>
+							</div>
+							<!-- End row -->
+						</div>
+						<!-- End strip booking -->
+
+						<div class="strip_booking">
+							<div class="row">
+								<div class="col-lg-2 col-md-2">
+									<div class="date">
+										<span class="month">Dec</span>
+										<span class="day"><strong>28</strong>Fri</span>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-5">
+									<h3 class="tours_booking">Tour Eiffel<span>2 Adults</span></h3>
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<ul class="info_booking">
+										<li><strong>Booking id</strong> 23442</li>
+										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
+									</ul>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="booking_buttons">
+										<a href="#0" class="btn_2">Edit</a>
+										<a href="#0" class="btn_3">Cancel</a>
+									</div>
+								</div>
+							</div>
+							<!-- End row -->
+						</div>
+						<!-- End strip booking -->
+
+						<div class="strip_booking">
+							<div class="row">
+								<div class="col-lg-2 col-md-2">
+									<div class="date">
+										<span class="month">Dec</span>
+										<span class="day"><strong>30</strong>Fri</span>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-5">
+									<h3 class="transfers_booking">Orly Airport<span>2 Adults / 2Childs</span></h3>
+								</div>
+								<div class="col-lg-2 col-md-3">
+									<ul class="info_booking">
+										<li><strong>Booking id</strong> 23442</li>
+										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
+									</ul>
+								</div>
+								<div class="col-lg-2 col-md-2">
+									<div class="booking_buttons">
+										<a href="#0" class="btn_2">Edit</a>
+										<a href="#0" class="btn_3">Cancel</a>
+									</div>
+								</div>
+							</div>
+							<!-- End row -->
+						</div>
+						<!-- End strip booking -->
+
+					</section>
+					<!-- End section 1 -->
+
+					<section id="section-2">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								{% if wishlist %}
+								{% for service in wishlist %}
+								<div class="hotel_container">
+									<div class="img_container">
+										<a href="single_hotel.html">
+											<img src="{{service.thumbnail.url}}" width="800" height="533" class="img-fluid" alt="Image">
+											<div class="ribbon top_rated">
+											</div>
+											<div class="score">
+												<span>7.5</span>Good
+											</div>
+											<div class="short_info hotel">
+												From/Per night<span class="price"><sup>$</sup>59</span>
+											</div>
+										</a>
+									</div>
+									<div class="hotel_title">
+										<h3><strong>{{service.name}}</strong> </h3>
+										<div class="rating">
+											<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
+										</div>
+										<!-- end rating -->
+										<div class="wishlist_close_admin">
+											-
+										</div>
+									</div>
+								</div>
+								<!-- End box tour -->
+							</div>
+							<!-- End col-md-6 -->
+
+							
+							{% endfor %}
+							{% endif %}
+
+						</div>
+						<!-- End row -->
+						<button type="submit" class="btn_1 green">Update wishlist</button>
+					</section>
+					<!-- End section 2 -->
+
+					<section id="section-3">
+						<div class="row">
+							<div class="col-md-6 add_bottom_30">
+								<h4>Change your password</h4>
+								<div class="form-group">
+									<label>Old password</label>
+									<input class="form-control" name="old_password" id="old_password" type="password">
+								</div>
+								<div class="form-group">
+									<label>New password</label>
+									<input class="form-control" name="new_password" id="new_password" type="password">
+								</div>
+								<div class="form-group">
+									<label>Confirm new password</label>
+									<input class="form-control" name="confirm_new_password" id="confirm_new_password" type="password">
+								</div>
+								<button type="submit" class="btn_1 green">Update Password</button>
+							</div>
+							<div class="col-md-6 add_bottom_30">
+								<h4>Change your email</h4>
+								<div class="form-group">
+									<label>Old email</label>
+									<input class="form-control" name="old_password" id="old_password" type="password">
+								</div>
+								<div class="form-group">
+									<label>New email</label>
+									<input class="form-control" name="new_password" id="new_password" type="password">
+								</div>
+								<div class="form-group">
+									<label>Confirm new email</label>
+									<input class="form-control" name="confirm_new_password" id="confirm_new_password" type="password">
+								</div>
+								<button type="submit" class="btn_1 green">Update Email</button>
+							</div>
+						</div>
+						<!-- End row -->
+
+						<hr>
+						<br>
+						<div class="row">
+							<div class="col-lg-6">
+								<h4>Notification settings</h4>
+								<table class="table table-striped options_cart">
+									<tbody>
+										<tr>
+											<td style="width:10%">
+												<i class="icon_set_1_icon-33"></i>
+											</td>
+											<td style="width:60%">
+												New Citytours Tours
+											</td>
+											<td style="width:35%">
+												<label class="switch-light switch-ios pull-right">
+													<input type="checkbox" name="option_1" id="option_1" checked value="">
+													<span>
+													<span>No</span>
+													<span>Yes</span>
+													</span>
+													<a></a>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<i class="icon_set_1_icon-6"></i>
+											</td>
+											<td>
+												New Citytours Hotels
+											</td>
+											<td>
+												<label class="switch-light switch-ios pull-right">
+													<input type="checkbox" name="option_2" id="option_2" value="">
+													<span>
+													<span>No</span>
+													<span>Yes</span>
+													</span>
+													<a></a>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<i class="icon_set_1_icon-26"></i>
+											</td>
+											<td>
+												New Citytours Transfers
+											</td>
+											<td>
+												<label class="switch-light switch-ios pull-right">
+													<input type="checkbox" name="option_3" id="option_3" value="" checked>
+													<span>
+							<span>No</span>
+													<span>Yes</span>
+													</span>
+													<a></a>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<i class="icon_set_1_icon-81"></i>
+											</td>
+											<td>
+												New Citytours special offers
+											</td>
+											<td>
+												<label class="switch-light switch-ios pull-right">
+													<input type="checkbox" name="option_4" id="option_4" value="">
+													<span>
+							<span>No</span>
+													<span>Yes</span>
+													</span>
+													<a></a>
+												</label>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<button type="submit" class="btn_1 green">Update notifications settings</button>
+							</div>
+						</div>
+						<!-- End row -->
+					</section>
+					<!-- End section 3 -->
+
+					<section id="section-4">
+						<div class="row">
+							<div class="col-md-6">
+								<h4>Your profile</h4>
+								<ul id="profile_summary">
+									<li>Username <span>{{request.user.username}}</span>
+									</li>
+									<li>First name <span>{{customer.name}}</span>
+									</li>
+									
+									<li>Phone number <span>{{customer.phone}}</span>
+									</li>
+									<li>Date of birth <span>-</span>
+									</li>
+									
+									
+									
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<p>
+								<img src="{{ request.user.customer.profile_pic.url }}" alt="Image" class="img-fluid styled profile_pic" width="250">
+								</p>
+							</div>
+						</div>
+						<!-- End row -->
+
+						<div class="divider"></div>
+							<form method='POST' action="">
+								{% csrf_token %}
+								<div class="form-group">
+
+								{{form.as_p}}
+								<hr>
+								<button type="submit" class="btn_1 green">Update Profile</button>
+								</div>
+							</form>
+					</section>
+					<!-- End section 4 -->
+					</div>
+					<!-- End content -->
+				</div>
+				<!-- End tabs -->
+			</div>
+			<!-- end container -->
+	</main>
+	<!-- End main -->
+
+	
+	{% block custom_scripts %}
+
+	<!-- Specific scripts -->
+	<script src="{% static 'js/tabs.js' %}"></script>
+	<script>
+		new CBPFWTabs(document.getElementById('tabs'));
+	</script>
+	<script>
+		$('.wishlist_close_admin').on('click', function (c) {
+			$(this).parent().parent().parent().fadeOut('slow', function (c) {});
+		});
+	</script>
+	{% endblock custom_scripts %}
+
+{% include "frontend/footer.html" %}
+
+{% endblock main1content %}
