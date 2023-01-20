@@ -57,10 +57,10 @@ Default CSS
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,400;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,900&display=swap');
 
 :root {
-    --main-color: #0056ae;
+    --main-color: #42855B;
     --white-color: #ffffff;
     --black-color: #2B2540;
-    --black-color-opacity: #2b2540c4;
+    --black-color-opacity: #483838;
     --paragraph-color: #818090;
     --bg-color: #F3F6FD;
     --transition: .4s all ease-in-out;

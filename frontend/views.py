@@ -122,7 +122,7 @@ def contactUs(request):
     form=ContactusForm()
 
     context = {'form': form}
-    return render(request, "frontend/contact_us.html", context)
+    return render(request, "frontend/contact.html", context)
 
 
 
@@ -141,7 +141,7 @@ def faq(request):
     faq_services = FaqServices.objects.all()
     faqs = Faq.objects.all()
     context = {'faqs':faqs, 'faq_services':faq_services}
-    return render(request, "frontend/faq.html", context)
+    return render(request, "frontend/faqs.html", context)
     
 
 
