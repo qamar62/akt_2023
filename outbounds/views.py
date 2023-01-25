@@ -48,8 +48,8 @@ def outbounds(request):
         
             
     
-    context = {'outbounds_filter':paged_tours, 'prices':prices,}
-    return render(request, 'outbounds/all_otours_grid.html', context)
+    context = {'outbounds_filter':paged_tours, 'prices':prices, 'outbounds':outbounds_tours}
+    return render(request, 'outbounds/outbounds.html', context)
 
 
 def outbound_detail(request, slug):
@@ -58,18 +58,7 @@ def outbound_detail(request, slug):
     otour = Otour.objects.get(slug=slug)
     
     context = {'otour':otour, }
-    return render(request, 'outbounds/outbounds_detail.html', context)
-
-def outboundListview(request):
-      
-    outbounds_tours = Otour.objects.all()
-    paginator = Paginator(Otour.objects.all(), 6)
-    page =  request.GET.get('page')
-    paged_tours =  paginator.get_page(page)
-    
-    
-    context = {'outbounds_tours':paged_tours, }
-    return render(request, 'outbounds/all_otours_list.html', context)
+    return render(request, 'outbounds/outbounds-details.html', context)
 
 def ocheckout(request, slug):
     

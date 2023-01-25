@@ -5,7 +5,7 @@ from .views import Blogs, BlogDetailView, AddPostView, UpdatePostView, DeletePos
 
 urlpatterns = [
     path('', Blogs.as_view(), name = "blogs"),
-    path('article/<int:pk>/', BlogDetailView.as_view(), name = "post-detail"),
+    path('article/<int:pk>/', BlogDetailView.as_view(), name = "blog-detail"),
     path('add_post/', AddPostView.as_view(), name = "add-post"),
     path('article/edit/<int:pk>/', UpdatePostView.as_view(), name = "update-post"),
     path('article/<int:pk>/remove', DeletePostView.as_view(), name = "delete-post"),

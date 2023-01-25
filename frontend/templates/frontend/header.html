@@ -67,7 +67,7 @@
         <div class="main-navbar">
             <div class="container">
                 <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{% url 'home' %}">
                         <img src="/static/assets/img/akt_logo_l.png" alt="logo" width="120">
                     </a>
                     <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -80,82 +80,32 @@
                                 
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url  'all-tours-grid' %}" class="nav-link">
                                     Tours
                                     <i class="fas fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="tour-search.html" class="nav-link">Tour</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="tour-details.html" class="nav-link">Tour Details</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="tour-booking-submission.html" class="nav-link">Tour Booking</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="top-destinations.html" class="nav-link">Top Destination</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="top-destinations-details.html" class="nav-link">Destination
-                                            Details</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     Transfers
                                     <i class="fas fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="flight-search-result.html" class="nav-link">Flight</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="flight-booking-submission.html" class="nav-link">Flight Booking</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'hotels' %}" class="nav-link">
                                     Hotel
                                     <i class="fas fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="hotel-search.html" class="nav-link">Hotel</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="hotel-details.html" class="nav-link">Hotel Booking</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="room-details.html" class="nav-link">Room Details</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="room-booking.html" class="nav-link">Room Booking</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{% url 'outbounds' %}" class="nav-link">
                                     Outbounds
                                     <i class="fas fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="hotel-search.html" class="nav-link">Hotel</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="hotel-details.html" class="nav-link">Hotel Booking</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="room-details.html" class="nav-link">Room Details</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="room-booking.html" class="nav-link">Room Booking</a>
-                                    </li>
-                                </ul>
+                                
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
@@ -198,91 +148,19 @@
                                     <li class="nav-item">
                                         <a href="{% url 'about' %}" class="nav-link">About</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="tour-guides.html" class="nav-link">Team</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="testimonials.html" class="nav-link">Testimonials</a>
-                                    </li>
+                                   
+                                    
                                     <li class="nav-item">
                                         <a href="{% url 'faq' %}" class="nav-link">FAQ</a>
                                     </li>
+                                    
                                     <li class="nav-item">
-                                        <a href="booking-confirmation.html" class="nav-link">Booking
-                                            Confirmation</a>
+                                        <a href="{% url 'blogs' %}" class="nav-link">Blogs</a>
+                                        
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">News</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="news.html" class="nav-link">News</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="news-v2.html" class="nav-link">News v2</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="news-v3.html" class="nav-link">News v3</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="news-details.html" class="nav-link">News Details</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">User Pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="login.html" class="nav-link">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="register.html" class="nav-link">Register</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="forgot-password.html" class="nav-link">Forget Password</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="verify-otp.html" class="nav-link">Verify OTP</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="reset-password.html" class="nav-link">Reset Password</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Customer Dashboard</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="hotel-booking.html" class="nav-link">Hotel booking</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="flight-booking.html" class="nav-link">Flight booking</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="tour-booking.html" class="nav-link">Tour booking</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="booking-history.html" class="nav-link">Booking history</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="my-profile.html" class="nav-link">My profile</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="wallet.html" class="nav-link">Wallet</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="notification.html" class="nav-link">Notifications</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="error.html" class="nav-link">404 Error</a>
-                                    </li>
+                                    
+                                    
+                                   
                                 </ul>
                             </li>
                             <li class="nav-item">

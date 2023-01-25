@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import ContactusForm
 from frontend.models import Faq, FaqServices, HappyCutomer, Newsletter
-from tour.models import Tour , Promotion, TourGallery, TourService
+from tour.models import Tour , Promotion
 from accounts.models import  Contact
 from django.contrib import messages
 from django.core.mail import send_mail
 from outbounds.models import Otour
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .filters import TourCatFilter
+
 from django.db.models import Q
 from tour.models import ReviewRating
 from tour.forms import ReviewForm
@@ -29,74 +29,6 @@ def front(request):
 
     context = {'tours': tours , 'discount': discount, 'total_tours':total_tours, 'happy_customer':happy_customer}
     return render(request, "frontend/home.html", context)
-
-
-def tourDetail(request, slug):
-
-    tour_service = TourService.objects.all()
-    tour = Tour.objects.get(slug=slug)
-    
-    if request.method == 'POST':
-        quantity = request.POST.get('quantity')
-        print(quantity)        
-    
-    
-    tour_gallery = TourGallery.objects.all()
-    reviews = ReviewRating.objects.all()
-    
-    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews }
-    return render( request, "frontend/tourdetail.html", context )
-
-
-
-def submit_review(request, tour_id):
-    url = request.META.get('HTTP_REFERER')
-    if request.method == 'POST':
-        try:
-            reviews = ReviewRating.objects.get(user__id=request.user.id, tour__id=tour_id)
-            form = ReviewForm(request.POST, instance=reviews)
-            form.save()
-            messages.success(request, 'Thank you! Your review has been updated.')
-            return redirect(url)
-        except ReviewRating.DoesNotExist:
-            form = ReviewForm(request.POST)
-            if form.is_valid():
-                data = ReviewRating()
-                data.subject = form.cleaned_data['subject']
-                data.rating = form.cleaned_data['rating']
-                data.review = form.cleaned_data['review']
-                data.ip = request.META.get('REMOTE_ADDR')
-                data.tour_id = tour_id
-                data.user_id = request.user.id
-                data.save()
-                messages.success(request, 'Thank you! Your review has been submitted.')
-                return redirect(url)
-
-def toursList(request):
-    tours = Tour.objects.all()
-
-    #setup pagination
-    paginator = Paginator(Tour.objects.all(), 3)
-    page =  request.GET.get('page')
-    paged_tours =  paginator.get_page(page)
-    tour_count =  tours.count()
-
-
-    context = {'tours': paged_tours, 'tour_count':tour_count}
-    return render( request, "frontend/all_tours_list.html", context )
-
-def toursGrid(request):
-    tours = Tour.objects.all()
-    paginator = Paginator(Tour.objects.all(), 3)
-    page =  request.GET.get('page')
-    paged_tours =  paginator.get_page(page)
-    tour_count =  tours.count()
-
-    catfilter =  TourCatFilter()
-
-
-    context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter}
-    return render( request, "frontend/all_tours_grid.html", context )
 
 
 

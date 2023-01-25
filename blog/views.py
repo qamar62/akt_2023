@@ -39,7 +39,7 @@ class Blogs(ListView):
 
 class BlogDetailView(DetailView):
     model = Post
-    template_name = 'blog/post_detail.html'
+    template_name = 'blog/blog-detail.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

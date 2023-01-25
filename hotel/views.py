@@ -48,7 +48,7 @@ def hotel(request):
 
     context = {'amenities_objs' : amenities_objs , 'hotels_objs' : hotels_objs , 'sort_by' : sort_by 
     , 'search' : search , 'amenities' : amenities}
-    return render(request , 'hotel/all_hotels_list.html' ,context)
+    return render(request , 'hotel/hotels.html' ,context)
 
 
 

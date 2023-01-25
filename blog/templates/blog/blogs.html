@@ -1,194 +1,238 @@
-{% extends 'frontend/main1.html' %}
+{% extends 'frontend/base.html' %}
 {% load static %}
 
 
+{% block main %}
+{% include 'frontend/header.html' %}
 
+    <!-- Common Banner Area -->
+    <section id="common_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_bannner_text">
+                        <h2>News</h2>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><span><i class="fas fa-circle"></i></span>News</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-{% block main1content %}
-
-    {% include 'frontend/header_1.html' %}
-
-    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
-
-
-
-	<section class="parallax-window" data-parallax="scroll" data-image-src="{% static 'images/img/morning.jpg' %}" data-natural-width="1400" data-natural-height="470">
-		<div class="parallax-content-1">
-			<div class="animated fadeInDown">
-				<h1>Tour Blog</h1>
-				<p>Latest News about Dubai attractions</p>
-			</div>
-		</div>
-	</section>
-	<!-- End section -->
-
-	<main>
-		<div id="position">
-			<div class="container">
-				<ul>
-					<li><a href="#">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
-				</ul>
-			</div>
-		</div>
-		<!-- End position -->
-
-		<div class="container margin_60">
-			<div class="row">
+    <!-- News Area -->
+    <section id="news_main_arae" class="section_padding">
+        <div class="container">
+            <div class="row">
                 
-				<div class="col-lg-9">
-					{% for post in object_list %}
-					<div class="box_style_1">
-						
-						<div class="post">
-							<a href="#"><img src="{{ post.thumbnail.url }}" alt="Image" class="img-fluid">
-							</a>
-							<div class="post_info clearfix">
-								<div class="post-left">
-									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>{{post.post_created}}</span>
-										</li>
-										<li><i class="icon-inbox-alt"></i> In <a href="">{{ post.total_likes }}: Likes</a>
-										</li>
-										<li class="post-right">
-											<form action="{% url 'like_post' %}" method="POST">
-												{% csrf_token %}
-												<input type="hidden" name="post_id" value="{{ post.pk }}" >
-												
-												{% if user not in post.likes.all %}
-												<button type="submit" class="icon-heart-empty">Like</button>
-													{% else %}
-													<button type="submit" class="icon-heart">Unlike</button> 
-												{% endif %}
-													
-											</form>
-											
-										</li>
-									</ul>
-								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">{{post.author}} </a>
-								</div>
-							</div>
-							<h2>{{post.title}}</h2>
-							<a href="{% url 'post-detail' post.id %}" class="btn_1">Read more</a>
-											
-							
-						</div>
+                <div class="col-lg-9">
+                    {% for post in object_list %}
+                    <div class="news_two_card">
+                        <div class="news_item_boxed">
+                            <div class="news_item_img">
+                                <a href="{% url 'blog-detail' post.id %}"><img src="{{ post.thumbnail.url}}" alt="img"></a>
+                            </div>
+                            <div class="news_author_area">
+                                <div class="news_author_img">
+                                    <img src="/static/assets/img/news/author-1.png" alt="img">
+                                </div>
+                                <div class="news_author_area_name news_two_author">
+                                    <h4>{{ post.author}}</h4>
+                                    <p><i class="fas fa-circle"></i> <a href="">{{post.post_created |date:'D d M Y'}}</a> <i
+                                            class="fas fa-circle"></i> 8 min read</p>
+                                </div>
+                            </div>
+                            <div class="news_item_content news_two_content">
+                                <h2>
+                                    <a href="{% url 'blog-detail' post.id %}">
+                                        {{post.title}}
+                                    </a>
+                                </h2>
+                                <p>
+                                    {{ post.body | safe | truncatewords:10 }} <a href="news-details.html"> Read more...</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor  %}
+                    <div class="news_two_card">
+                        <div class="news_item_boxed">
+                            <div class="news_item_img">
+                                <a href="news-details.html"><img src="/static/assets/img/news/news-two-2.png" alt="img"></a>
+                            </div>
+                            <div class="news_author_area">
+                                <div class="news_author_img">
+                                    <img src="/static/assets/img/news/author-1.png" alt="img">
+                                </div>
+                                <div class="news_author_area_name news_two_author">
+                                    <h4>Jennifer lawrence</h4>
+                                    <p><i class="fas fa-circle"></i> <a href="news.html">26 Oct 2021</a> <i
+                                            class="fas fa-circle"></i> 8 min read</p>
+                                </div>
+                            </div>
+                            <div class="news_item_content news_two_content">
+                                <h2>
+                                    <a href="news-details.html">
+                                        Veniam ex tempor qui ad amet mollit cillum aliqua aliqua. Fugiat tempor eu magna
+                                    </a>
+                                </h2>
+                                <p>
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when looking at its fru layout. The point of using Lorem Ipsum is
+                                    that it has a more. <a href="news-details.html"> Read more...</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_two_card">
+                        <div class="news_item_boxed">
+                            <div class="news_item_img">
+                                <a href="news-details.html"><img src="/static/assets/img/news/news-two-3.png" alt="img"></a>
+                            </div>
+                            <div class="news_author_area">
+                                <div class="news_author_img">
+                                    <img src="/static/assets/img/news/author-1.png" alt="img">
+                                </div>
+                                <div class="news_author_area_name news_two_author">
+                                    <h4>Jennifer lawrence</h4>
+                                    <p><i class="fas fa-circle"></i> <a href="news.html">26 Oct 2021</a> <i
+                                            class="fas fa-circle"></i> 8 min read</p>
+                                </div>
+                            </div>
+                            <div class="news_item_content news_two_content">
+                                <h2>
+                                    <a href="news-details.html">
+                                        Veniam ex tempor qui ad amet mollit cillum aliqua aliqua. Fugiat tempor eu magna
+                                    </a>
+                                </h2>
+                                <p>
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when looking at its fru layout. The point of using Lorem Ipsum is
+                                    that it has a more. <a href="news-details.html"> Read more...</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_two_card">
+                        <div class="news_item_boxed">
+                            <div class="news_item_img">
+                                <a href="news-details.html"><img src="/static/assets/img/news/news-two-4.png" alt="img"></a>
+                            </div>
+                            <div class="news_author_area">
+                                <div class="news_author_img">
+                                    <img src="/static/assets/img/news/author-1.png" alt="img">
+                                </div>
+                                <div class="news_author_area_name news_two_author">
+                                    <h4>Jennifer lawrence</h4>
+                                    <p><i class="fas fa-circle"></i> <a href="news.html">26 Oct 2021</a> <i
+                                            class="fas fa-circle"></i> 8 min read</p>
+                                </div>
+                            </div>
+                            <div class="news_item_content news_two_content">
+                                <h2>
+                                    <a href="news-details.html">
+                                        Veniam ex tempor qui ad amet mollit cillum aliqua aliqua. Fugiat tempor eu magna
+                                    </a>
+                                </h2>
+                                <p>
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when looking at its fru layout. The point of using Lorem Ipsum is
+                                    that it has a more. <a href="news-details.html"> Read more...</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination_area">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">«</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="news_area_sidebar_area">
+                        <div class="news_sidebar_content">
+                            <div class="news_sidebar_heading">
+                                <h3>Search by name</h3>
+                            </div>
+                            <div class="news_sidebar_search">
+                                <form action="#!">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="e.g Hotel castle salam" required>
+                                    <button type="submit" class="btn"><img src="/static/assets/img/icon/search.png" alt="icon"></button>
+                                    </div>
+                                    
+                                </form>
+                                
+                            </div>
+                        </div>
+                        <div class="news_sidebar_content">
+                            <div class="news_sidebar_heading">
+                                <h3>Category</h3>
+                            </div>
+                           <div class="news_sidebar_content_inner">
+                            <ul class="news_sidebar_category">
+                                <li><a href="#!">Travel agent</a></li>
+                                <li><a href="#!">Honeymoon</a></li>
+                                <li><a href="#!">Flights</a></li>
+                                <li><a href="#!">Adventure</a></li>
+                                <li><a href="#!">Hotels</a></li>
+                                <li><a href="#!">Apartments</a></li>
+                                <li><a href="#!">Flight service</a></li>
+                                <li><a href="#!">Visa processing</a></li>
+                            </ul>
+                           </div>
+                        </div>
+                        <div class="news_sidebar_content">
+                            <div class="news_sidebar_heading">
+                                <h3>Tags</h3>
+                            </div>
+                            <div class="news_sidebar_content_inner">
+                                <ul class="news_sidebar_tags">
+                                    <li><a href="#!">Flight</a></li>
+                                    <li><a href="#!">Travel</a></li>
+                                    <li><a href="#!">Agency</a></li>
+                                    <li><a href="#!">Hotel</a></li>
+                                    <li><a href="#!">Lifestyle</a></li>
+                                    <li><a href="#!">Healthy</a></li>
+                                    <li><a href="#!">Group</a></li>
+                                    <li><a href="#!">Couple</a></li>
+                                    <li><a href="#!">Drinks</a></li>
+                                </ul>
+                               </div>
+                        </div>
+                        <div class="news_sidebar_content">
+                          <div class="sidebar_advasting_area">
+                            <a href="#!"><img src="/static/assets/img/news/news-sidebar.png" alt="img"></a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-						<!-- end post -->
-					</div>
-					{% endfor %}
-					<hr>
-					
-					<nav aria-label="Page navigation">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
-							<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<!-- end pagination-->
-					
-				</div>
-				<!-- End col -->
+   
 
-				<aside class="col-lg-3 add_bottom_30">
+    {% include 'frontend/newsletter.html' %}
+   
+    {% include 'frontend/footer.html' %}
 
-					<div class="widget">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-						</span>
-						</div>
-						<!-- /input-group -->
-					</div>
-					<!-- End Search -->
-					<hr>
-					<div class="widget" id="cat_blog">
-						<h4>Categories</h4>
-						<ul>
-							<li><a href="#">Places to visit</a>
-							</li>
-							<li><a href="#">Top tours</a>
-							</li>
-							<li><a href="#">Tips for travellers</a>
-							</li>
-							<li><a href="#">Events</a>
-							</li>
-						</ul>
-					</div>
-					<!-- End widget -->
-
-					<hr>
-
-					<div class="widget">
-						<h4>Recent post</h4>
-						<ul class="recent_post">
-							{% for post in object_list|slice:":3" %}
-							<li>
-								<i class="icon-calendar-empty"></i> {{post.post_created |date:"D, d M, Y"}}
-								<div><a href="{% url 'post-detail' post.id %}">{{post.title}} </a>
-								</div>
-							</li>
-							{% endfor %}
-						</ul>
-					</div>
-					<!-- End widget -->
-					<hr>
-					<div class="widget tags">
-						<h4>Tags</h4>
-						<a href="#">Lorem ipsum</a>
-						<a href="#">Dolor</a>
-						<a href="#">Long established</a>
-						<a href="#">Sit amet</a>
-						<a href="#">Latin words</a>
-						<a href="#">Excepteur sint</a>
-					</div>
-					<!-- End widget -->
-
-				</aside>
-				<!-- End aside -->
-
-			</div>
-			<!-- End row-->
-		</div>
-		<!-- End container -->
-	</main>
-	<!-- End main -->
-						
-					
-					  
-					 
-
-
-						
-
-						
-                       
-						
-
-
-
-
-
+    {% endblock main %}
     
-{% include 'frontend/footer.html' %}    
-{% endblock main1content %}
+               

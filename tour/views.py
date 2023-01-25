@@ -2,7 +2,10 @@ from http.client import HTTPResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import datetime
 import time
-from . models import Tour
+
+from . filters import TourCatFilter
+from . models import Tour, TourService, TourGallery, ReviewRating
+from . forms import ReviewForm
 # Create your views here.
 
 
@@ -15,6 +18,7 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
 from bookings.twilio import client
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 
@@ -135,3 +139,74 @@ def confirmation(request):
     
     context = {}
     return redirect(request, 'tour/confirmation.html', context)
+
+
+
+
+def tourDetail(request, slug):
+
+    tour_service = TourService.objects.all()
+    tour = Tour.objects.get(slug=slug)
+    
+    if request.method == 'POST':
+        quantity = request.POST.get('quantity')
+        print(quantity)        
+    
+    
+    tour_gallery = TourGallery.objects.all()
+    reviews = ReviewRating.objects.all()
+    
+    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews }
+    return render( request, "tour/tourdetail.html", context )
+
+
+
+def submit_review(request, tour_id):
+    url = request.META.get('HTTP_REFERER')
+    if request.method == 'POST':
+        try:
+            reviews = ReviewRating.objects.get(user__id=request.user.id, tour__id=tour_id)
+            form = ReviewForm(request.POST, instance=reviews)
+            form.save()
+            messages.success(request, 'Thank you! Your review has been updated.')
+            return redirect(url)
+        except ReviewRating.DoesNotExist:
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                data = ReviewRating()
+                data.subject = form.cleaned_data['subject']
+                data.rating = form.cleaned_data['rating']
+                data.review = form.cleaned_data['review']
+                data.ip = request.META.get('REMOTE_ADDR')
+                data.tour_id = tour_id
+                data.user_id = request.user.id
+                data.save()
+                messages.success(request, 'Thank you! Your review has been submitted.')
+                return redirect(url)
+
+def toursList(request):
+    tours = Tour.objects.all()
+
+    #setup pagination
+    paginator = Paginator(Tour.objects.all(), 3)
+    page =  request.GET.get('page')
+    paged_tours =  paginator.get_page(page)
+    tour_count =  tours.count()
+
+
+    context = {'tours': paged_tours, 'tour_count':tour_count}
+    return render( request, "tour/all_tours_list.html", context )
+
+def toursGrid(request):
+    tours = Tour.objects.all()
+    paginator = Paginator(Tour.objects.all(), 3)
+    page =  request.GET.get('page')
+    paged_tours =  paginator.get_page(page)
+    tour_count =  tours.count()
+
+    catfilter =  TourCatFilter()
+
+
+    context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter}
+    return render( request, "tour/all_tours_grid.html", context )
+

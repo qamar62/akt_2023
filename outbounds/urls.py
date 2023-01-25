@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.outbounds, name="outbounds"),
-    path('list-view', views.outboundListview, name="list-view"),
+    
     path('itinerary/<str:slug>/', views.outbound_detail, name="outbound-detail"),
     path('itinerary/<str:slug>/checkout/', views.ocheckout, name="ocheckout"),
     path('create-booking/', views.createObooking, name="create-booking"),
