@@ -65,7 +65,7 @@ def ocheckout(request, slug):
     
     otour = Otour.objects.get(slug=slug)
     
-    current_user = request.user.customer
+    current_user = request.user
     tax = 0
     grand_total = 0
     total = 0
@@ -139,7 +139,7 @@ def ocheckout(request, slug):
     
     
     context = {'otour':otour}
-    return render (request, 'outbounds/ocheckout.html', context)
+    return render (request, 'outbounds/obookingForm.html', context)
 
     
    

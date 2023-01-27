@@ -2,6 +2,16 @@
 {% load static %}
 
 
+{% block custom_css %}
+<!--slick-theme.css-->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick-theme.css' %}" />
+<!-- Slick css -->
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/slick.min.css' %}" />
+ <!-- Rangeslider css -->
+ <link rel="stylesheet" href="{% static 'assets/css/nouislider.css' %}" />
+
+{% endblock %}
+
 {% block main %}
 {% include 'frontend/header.html' %}
 
@@ -84,39 +94,39 @@
                         <div class="tour_details_img_wrapper">
                             <div class="slider-for">
                                 <div>
-                                    <img src="assets/img/tour/big-img.png" alt="img">
+                                    <img src="/static/assets/img/tour/big-img.png" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/big-img2.png" alt="img">
+                                    <img src="/static/assets/img/tour/big-img2.png" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/big-img3.png" alt="img">
+                                    <img src="/static/assets/img/tour/big-img3.png" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/big-img4.png" alt="img">
+                                    <img src="{{ otour.thumbnail.url }}" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/big-img5.png" alt="img">
+                                    <img src="/static/assets/img/tour/big-img5.png" alt="img">
                                 </div>
                             </div>
                             <div class="slider-nav">
                                 <div>
-                                    <img src="assets/img/tour/small1-img.png" alt="img">
+                                    <img src="{{ otour.thumbnail.url }}" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/small2-img.png" alt="img">
+                                    <img src="/static/assets/img/tour/small2-img.png" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/small3-img.png" alt="img">
+                                    <img src="/static/assets/img/tour/small3-img.png" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/small4-img.png" alt="img">
+                                    <img src="{{ otour.thumbnail.url }}" alt="img" width="146" height="130">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/small5-img.png" alt="img">
+                                    <img src="/static/assets/img/tour/small5-img.png" alt="img">
                                 </div>
                                 <div>
-                                    <img src="assets/img/tour/small6-img.png" alt="img">
+                                    <img src="/static/assets/img/tour/small6-img.png" alt="img">
                                 </div>
                             </div>
                         </div>
@@ -147,21 +157,23 @@
                         </div>
                         <div class="tour_details_boxed">
                             <h3 class="heading_theme">Itinerary</h3>
+                            {% for itin in otour.itinerary.all %}
                             <div class="tour_details_boxed_inner">
+                               
                                 <div class="accordion" id="accordionExample">
                                     <div class="accordion_flex_area">
                                         <div class="accordion_left_side">
-                                            <h5>Day 1</h5>
+                                            <h5>{{itin.title|slice:6}}</h5>
                                         </div>
                                         <div class="accordion-item">
                                             <h2 class="accordion-header" id="headingOne">
                                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
+                                                    data-bs-target="#collapseOne{{itin.id}}" aria-expanded="false"
                                                     aria-controls="collapseOne">
-                                                    Stet clita kasd gubergren, no sea takimata sanctus est
+                                                    {{itin.title|slice:'6:'}}
                                                 </button>
                                             </h2>
-                                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                            <div id="collapseOne{{itin.id}}" class="accordion-collapse collapse show"
                                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
                                                     <div class="accordion_itinerary_list">
@@ -200,158 +212,32 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="accordion_flex_area">
-                                        <div class="accordion_left_side">
-                                            <h5>Day 2</h5>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingTwo">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                    aria-expanded="false" aria-controls="collapseTwo">
-                                                    Stet clita kasd gubergren, no sea takimata sanctus est
-                                                </button>
-                                            </h2>
-                                            <div id="collapseTwo" class="accordion-collapse collapse"
-                                                aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <div class="accordion_itinerary_list">
-                                                        <ul>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have
-                                                                suffered alteration in some form
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                Lorem Ipsum is that it has a more-or-less normal
-                                                                distribution of letters, to using 'Content here
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                The standard chunk of Lorem Ipsum used since the 1500s
-                                                                is
-                                                                reproduced below for those interested.
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion_flex_area">
-                                        <div class="accordion_left_side">
-                                            <h5>Day 3</h5>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingThree">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                    aria-expanded="false" aria-controls="collapseThree">
-                                                    Stet clita kasd gubergren, no sea takimata sanctus est
-                                                </button>
-                                            </h2>
-                                            <div id="collapseThree" class="accordion-collapse collapse"
-                                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <div class="accordion_itinerary_list">
-                                                        <ul>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                Contrary to popular belief, Lorem Ipsum is not simply
-                                                                random
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                Many desktop publishing packages and web page editors
-                                                                now
-                                                                use
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                Lorem Ipsum is that it has a more-or-less normal
-                                                                distribution of letters, to using 'Content here
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                The standard chunk of Lorem Ipsum used since the 1500s
-                                                                is
-                                                                reproduced below for those interested.
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion_flex_area">
-                                        <div class="accordion_left_side">
-                                            <h5>Day 4</h5>
-                                        </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="headingFour">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                                    aria-expanded="false" aria-controls="collapseFour">
-                                                    Stet clita kasd gubergren, no sea takimata sanctus est
-                                                </button>
-                                            </h2>
-                                            <div id="collapseFour" class="accordion-collapse collapse"
-                                                aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <div class="accordion_itinerary_list">
-                                                        <ul>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have
-                                                                suffered alteration in some form
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                Contrary to popular belief, Lorem Ipsum is not simply
-                                                                random
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                Many desktop publishing packages and web page editors
-                                                                now
-                                                                use
-                                                            </li>
-                                                            <li>
-                                                                <i class="fas fa-circle"></i>
-                                                                The standard chunk of Lorem Ipsum used since the 1500s
-                                                                is
-                                                                reproduced below for those interested.
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
+                                    
+                                    
                                 </div>
+                               
                             </div>
+                            {% endfor  %}
                         </div>
                         <div class="tour_details_boxed">
-                            <h3 class="heading_theme">Included/Excluded</h3>
-                            <div class="tour_details_boxed_inner">
-                                <p>
-                                    Stet clitaStet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                    sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                    eirmod.
-                                </p>
+                            <h3 class="heading_theme">Included</h3>
+                            <div class="tour_details_boxed_inner ">
+                                
                                 <ul>
-                                    <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                    <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian culture
-                                    </li>
-                                    <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire, and Cultural
-                                        Dance at Camp</li>
-                                    <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver allowances
-                                    </li>
-                                    <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle (SUV/Sedan) for
-                                        sightseeing on all days as per the itinerary.</li>
+                                    {% for include in otour.includes.all %}
+                                    <li><i class="fas fa-circle"></i>{{ include.name}}</li>
+                                    {% endfor %}
+                                    
+                                </ul>
+                            </div>
+                            <div class="tour_details_boxed_inner ">
+                                <h3 class="heading_theme">Excluded</h3>
+                                <ul>
+                                    {% for exclude in otour.excludes.all %}
+                                    <li><i class="fas fa-circle"></i>{{ exclude.name}}</li>
+                                    {% endfor %}
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -580,7 +466,7 @@
                             </div>
                         </div>
                         <div class="all_review_text">
-                            <img src="assets/img/review/review1.png" alt="img">
+                            <img src="/static/assets/img/review/review1.png" alt="img">
                             <h4>Manresh Chandra</h4>
                             <p>" Loved the overall tour for all 6 days covering jaipur jodhpur and jaisalmer. worth ur
                                 money for sure. thanks. Driver was very good and polite and safe driving for all 6 days.
@@ -588,19 +474,19 @@
                         </div>
                         <div class="all_review_small_img">
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small1.png" alt="img">
+                                <img src="/static/assets/img/review/review-small1.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small2.png" alt="img">
+                                <img src="/static/assets/img/review/review-small2.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small3.png" alt="img">
+                                <img src="/static/assets/img/review/review-small3.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small4.png" alt="img">
+                                <img src="/static/assets/img/review/review-small4.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small5.png" alt="img">
+                                <img src="/static/assets/img/review/review-small5.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
                                 <h5>+5</h5>
@@ -627,7 +513,7 @@
                             </div>
                         </div>
                         <div class="all_review_text">
-                            <img src="assets/img/review/review2.png" alt="img">
+                            <img src="/static/assets/img/review/review2.png" alt="img">
                             <h4>Michel falak</h4>
                             <p>" Loved the overall tour for all 6 days covering jaipur jodhpur and jaisalmer. worth ur
                                 money for sure. thanks. Driver was very good and polite and safe driving for all 6 days.
@@ -653,7 +539,7 @@
                             </div>
                         </div>
                         <div class="all_review_text">
-                            <img src="assets/img/review/review3.png" alt="img">
+                            <img src="/static/assets/img/review/review3.png" alt="img">
                             <h4>Chester dals</h4>
                             <p>" Loved the overall tour for all 6 days covering jaipur jodhpur and jaisalmer. worth ur
                                 money for sure. thanks. Driver was very good and polite and safe driving for all 6 days.
@@ -661,13 +547,13 @@
                         </div>
                         <div class="all_review_small_img">
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small1.png" alt="img">
+                                <img src="/static/assets/img/review/review-small1.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small2.png" alt="img">
+                                <img src="/static/assets/img/review/review-small2.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small5.png" alt="img">
+                                <img src="/static/assets/img/review/review-small5.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
                                 <h5>+15</h5>
@@ -702,10 +588,10 @@
                         </div>
                         <div class="all_review_small_img">
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small4.png" alt="img">
+                                <img src="/static/assets/img/review/review-small4.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
-                                <img src="assets/img/review/review-small5.png" alt="img">
+                                <img src="/static/assets/img/review/review-small5.png" alt="img">
                             </div>
                             <div class="all_review_small_img_item">
                                 <h5>+19</h5>
@@ -731,7 +617,7 @@
                             </div>
                         </div>
                         <div class="all_review_text">
-                            <img src="assets/img/review/review5.png" alt="img">
+                            <img src="/static/assets/img/review/review5.png" alt="img">
                             <h4>Jason bruno</h4>
                             <p>" Loved the overall tour for all 6 days covering jaipur jodhpur and jaisalmer. worth ur
                                 money for sure. thanks. Driver was very good and polite and safe driving for all 6 days.
@@ -761,7 +647,7 @@
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <a href="top-destinations-details.html"><img src="assets/img/destination/main-page6.png"
+                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page6.png"
                                     alt="img"></a>
                             <div class="top_destinations_box_content">
                                 <h4><a href="top-destinations-details.html">Kathmundu</a></h4>
@@ -774,7 +660,7 @@
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <a href="top-destinations-details.html"><img src="assets/img/destination/main-page5.png"
+                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page5.png"
                                     alt="img"></a>
                             <div class="top_destinations_box_content">
                                 <h4><a href="top-destinations-details.html">Himalaya</a></h4>
@@ -800,7 +686,7 @@
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <a href="top-destinations-details.html"><img src="assets/img/destination/main-page3.png"
+                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page3.png"
                                     alt="img"></a>
                             <div class="top_destinations_box_content">
                                 <h4><a href="top-destinations-details.html">Annapurna</a></h4>
@@ -813,7 +699,7 @@
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <a href="top-destinations-details.html"><img src="assets/img/destination/main-page2.png"
+                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page2.png"
                                     alt="img"></a>
                             <div class="top_destinations_box_content">
                                 <h4><a href="top-destinations-details.html">Explore china</a></h4>
@@ -826,7 +712,7 @@
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <a href="top-destinations-details.html"><img src="assets/img/destination/main-page1.png"
+                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page1.png"
                                     alt="img"></a>
                             <div class="top_destinations_box_content">
                                 <h4><a href="top-destinations-details.html">Ancient egypt</a></h4>
@@ -841,12 +727,111 @@
         </div>
     </section>
 
+
+
+     <!-- Offcanvas Area -->
+     <div class="offcanvas select_offer_modal offcanvas-end" tabindex="-1" id="offcanvasRight"
+     aria-labelledby="offcanvasRightLabel">
+     <div class="offcanvas-header">
+         <h5 id="offcanvasRightLabel">Book now</h5>
+         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+     </div>
+     <div class="offcanvas-body">
+         <div class="side_canvas_wrapper">
+             <div class="travel_date_side">
+                 <div class="form-group">
+                     <label for="dates">Select your travel date</label>
+                     <input type="date" id="dates" value="2022-05-05" class="form-control">
+                 </div>
+             </div>
+             <div class="select_person_side">
+                 <h3>Select person</h3>
+                 <div class="select_person_item">
+                     <div class="select_person_left">
+                         <h6>Adult</h6>
+                         <p>12y+</p>
+                     </div>
+                     <div class="select_person_right">
+                         <div class="button-set">
+                             <button type="button">
+                                 <i class="fas fa-plus"></i>
+                             </button>
+                             <span>01</span>
+                             <button type="button">
+                                 <i class="fas fa-minus"></i>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="select_person_item">
+                     <div class="select_person_left">
+                         <h6>Children</h6>
+                         <p>2 - 12 years</p>
+                     </div>
+                     <div class="select_person_right">
+                         <div class="button-set">
+                             <button type="button">
+                                 <i class="fas fa-plus"></i>
+                             </button>
+                             <span>01</span>
+                             <button type="button">
+                                 <i class="fas fa-minus"></i>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="select_person_item">
+                     <div class="select_person_left">
+                         <h6>Infant</h6>
+                         <p>Below 2 years</p>
+                     </div>
+                     <div class="select_person_right">
+                         <div class="button-set">
+                             <button type="button">
+                                 <i class="fas fa-plus"></i>
+                             </button>
+                             <span>01</span>
+                             <button type="button">
+                                 <i class="fas fa-minus"></i>
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="write_spical_not">
+                     <label for="texts">Write any special note</label>
+                     <textarea rows="5" class="form-control" id="texts"
+                         placeholder="Write any special note"></textarea>
+                 </div>
+                 <div class="form-check write_spical_check">
+                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultf1">
+                     <label class="form-check-label" for="flexCheckDefaultf1">
+                         <span class="main_spical_check">
+                             <span>I read and accept all <a href="terms-service.html">Terms and conditios</a></span>
+                         </span>
+                     </label>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="proceed_booking_btn ">
+         <a href="{% url 'ocheckout' otour.slug %}" class="btn btn_theme btn_md w-100">Proceed to Booking</a>
+     </div>
+ </div>
   
 
     
     {% include 'frontend/newsletter.html' %}
    
     {% include 'frontend/footer.html' %}
+
+
+    {% block custom_script %}
+
+     <!-- Slick js -->
+     <script src="{% static 'assets/js/slick.min.js' %}"></script>
+     <script src="{% static 'assets/js/slick-slider.js' %}"></script>
+
+     {% endblock %}
 
     {% endblock main %}
     

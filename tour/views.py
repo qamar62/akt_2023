@@ -52,7 +52,7 @@ def checkout(request, slug):
     
     tour = Tour.objects.get(slug=slug)
     
-    current_user = request.user.customer
+    current_user = request.user
     tax = 0
     grand_total = 0
     total = 0
@@ -132,7 +132,7 @@ def checkout(request, slug):
     
     
     context = {'tour':tour}
-    return render (request, 'tour/checkout.html', context)
+    return render (request, 'tour/tbookingForm.html', context)
 
 
 def confirmation(request):
@@ -157,7 +157,7 @@ def tourDetail(request, slug):
     reviews = ReviewRating.objects.all()
     
     context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews }
-    return render( request, "tour/tourdetail.html", context )
+    return render( request, "tour/tourdetails.html", context )
 
 
 
@@ -207,6 +207,6 @@ def toursGrid(request):
     catfilter =  TourCatFilter()
 
 
-    context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter}
+    context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter, 'all_tours':tours}
     return render( request, "tour/all_tours_grid.html", context )
 
