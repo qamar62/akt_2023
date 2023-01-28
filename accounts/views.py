@@ -48,7 +48,7 @@ def registerPage(request):
   
     
     context = {'form':form}
-    return render(request, 'accounts/register-34.html', context)
+    return render(request, 'accounts/register.html', context)
 
 
 
@@ -99,7 +99,7 @@ def loginPage(request):
     
 
     context = {}
-    return render(request, 'accounts/login-34.html', context)
+    return render(request, 'accounts/login.html', context)
 
 def logoutUser(request):
     logout(request)

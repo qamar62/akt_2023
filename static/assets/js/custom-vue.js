@@ -7,7 +7,9 @@ const app = Vue.createApp({
                Infant: 0,
              
              }
-           }
+           }, 
+           
      })
 app.mount("#canvas")
+
 
