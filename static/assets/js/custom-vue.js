@@ -8,8 +8,10 @@ const app = Vue.createApp({
              
              }
            }, 
-           
+           methods: {
+                if(localStorage){
+                    localStorage.setItem("Adult", this.Adult)
+                }
+           },
      })
 app.mount("#canvas")
-
-
