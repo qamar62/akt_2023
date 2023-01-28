@@ -1,5 +1,7 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 {% block main %}
 {% include 'frontend/header.html' %}
@@ -31,39 +33,47 @@
                         <div class="common_author_heading">
                             <h3>Register account</h3>
                             <h2>Register your account</h2>
+                            {% for message in messages %}
+        
+                            <h2 class="alert alert-info">{{message}}</h3>
+            
+                        {% endfor %}
                         </div>
                         <div class="common_author_form">
-                            <form action="#" id="main_author_form">
+                            <form method="POST" action="" id="main_author_form">
+                               {% csrf_token %}
+                                
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter first name*" />
+                                    {{form.username}}
+                                    
+                                </div>
+
+                                <div class="form-group">
+                                    {{form.email}}
+                                   
+                                        
+                                </div>
+                               
+                                
+                                <div class="form-group">
+                                    {{form.password1}}
+                                    
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter last name*" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control"
-                                        placeholder="your email address (Optional)" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Mobile number*" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="User name*" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" />
+                                    {{form.password2}}
+                                    
                                 </div>
                                 <div class="common_form_submit">
-                                    <button class="btn btn_theme btn_md">Register</button>
+                                    <button class="btn btn_theme btn_md" type="submit">Register</button>
                                 </div>
                                 <div class="have_acount_area other_author_option">
                                     <div class="line_or">
                                         <span>or</span>
                                     </div>
                                     <ul>
-                                        <li><a href="#!"><img src="{% static 'assets/img/icon/google.png' %}" alt="icon"></a></li>
-                                        <li><a href="#!"><img src="{% static 'assets/img/icon/facebook.png' %}" alt="icon"></a></li>
-                                        <li><a href="#!"><img src="{% static 'assets/img/icon/twitter.png' %}" alt="icon"></a></li>
+                                        <li><a href="{% provider_login_url 'google' %}"><img src="{% static 'assets/img/icon/google.png' %}" alt="icon"></a></li>
+                                        <li><a href="{% provider_login_url 'facebook' %}"><img src="{% static 'assets/img/icon/facebook.png' %}" alt="icon"></a></li>
+                                        <li><a href=""><img src="{% static 'assets/img/icon/twitter.png' %}" alt="icon"></a></li>
                                     </ul>
                                     <p>Already have an account? <a href="{% url 'login' %}">Log in now</a></p>
                                 </div>

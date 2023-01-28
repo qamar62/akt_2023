@@ -63,7 +63,7 @@ class CreateUserForm(UserCreationForm):
             'name':'username', 
             'id':'username', 
             'type':'text', 
-            'placeholder':'User Name', 
+            'placeholder':'User name*', 
             
             }) 
         self.fields['email'].widget.attrs.update({ 
