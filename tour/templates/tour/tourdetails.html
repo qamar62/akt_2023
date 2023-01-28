@@ -649,6 +649,8 @@
 
 
  <!-- Offcanvas Area -->
+ 
+  <div id="canvas">
  <div class="offcanvas select_offer_modal offcanvas-end" tabindex="-1" id="offcanvasRight"
  aria-labelledby="offcanvasRightLabel">
  <div class="offcanvas-header">
@@ -672,11 +674,11 @@
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
-                         <button type="button">
+                         <button type="button" @click="Adult++">
                              <i class="fas fa-plus"></i>
                          </button>
-                         <span>01</span>
-                         <button type="button">
+                         <span> {% verbatim %} {{ Adult }} {% endverbatim %}</span>
+                         <button type="button" @click="Adult--">
                              <i class="fas fa-minus"></i>
                          </button>
                      </div>
@@ -689,11 +691,11 @@
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
-                         <button type="button">
+                         <button type="button" @click="Children++">
                              <i class="fas fa-plus"></i>
                          </button>
-                         <span>01</span>
-                         <button type="button">
+                         <span> {% verbatim %}  {{ Children }} {% endverbatim %}</span>
+                         <button type="button"  @click="Children--">
                              <i class="fas fa-minus"></i>
                          </button>
                      </div>
@@ -706,11 +708,11 @@
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
-                         <button type="button">
-                             <i class="fas fa-plus"></i>
+                         <button type="button" @click="Infant++">
+                             <i class="fas fa-plus" ></i>
                          </button>
-                         <span>01</span>
-                         <button type="button">
+                         <span>{% verbatim %} {{ Infant }} {% endverbatim %}</span>
+                         <button type="button" @click="Infant--">
                              <i class="fas fa-minus"></i>
                          </button>
                      </div>
@@ -726,6 +728,7 @@
                  <label class="form-check-label" for="flexCheckDefaultf1">
                      <span class="main_spical_check">
                          <span>I read and accept all <a href="terms-service.html">Terms and conditios</a></span>
+                        
                      </span>
                  </label>
              </div>
@@ -736,6 +739,8 @@
      <a href="{% url 'checkout' tour.slug %}" class="btn btn_theme btn_md w-100">Proceed to Booking</a>
  </div>
 </div>
+</div>
+
 
 
     {% include 'frontend/newsletter.html' %}
@@ -746,10 +751,18 @@
     {% block custom_script %}
 
      <!-- Slick js -->
+     <script src="https://unpkg.com/vue@next"></script>
+
      <script src="{% static 'assets/js/slick.min.js' %}"></script>
      <script src="{% static 'assets/js/slick-slider.js' %}"></script>
+     <script src="{% static 'assets/js/custom-vue.js' %}"></script>
+     
 
+    
+     
      {% endblock %}
+
+     
 
     {% endblock main %}
     

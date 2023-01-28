@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+   
 
     {% block custom_css %}
     {% endblock  %}
@@ -103,7 +104,7 @@
 
 
 
-
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
     <!-- Bootstrap js -->
     <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
@@ -119,6 +120,8 @@
     <script src="{% static 'assets/js/custom.js' %}"></script>
     <script src="{% static 'assets/js/add-form.js' %}"></script>
     <script src="{% static 'assets/js/video.js' %}"></script>
+    
+    
     {% block custom_script %}
     {% endblock custom_script %}
 
