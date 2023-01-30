@@ -280,9 +280,10 @@
                                 </ul>
                             </div>
                             <div class="tour_package_details_bar_price">
+                                {% for price in tour.price.all %}
                                 <h5>Price</h5>
                                 <div class="tour_package_bar_price">
-                                    <h6><del>AED 350</del></h6>
+                                    <h6><del>AED {{ price.adult_price }}</del></h6>
                                     <h3>AED 250 <sub>/per Adult</sub> </h3>
                                     
                                 </div>
@@ -291,6 +292,7 @@
                                     <h3>AED 150 <sub>/per Child</sub> </h3>
                                     
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="tour_select_offer_bar_bottom">
@@ -662,7 +664,8 @@
          <div class="travel_date_side">
              <div class="form-group">
                  <label for="dates">Select your travel date</label>
-                 <input type="date" id="dates" value="2022-05-05" class="form-control">
+                 <input name="bookingDate" v-model="bookingDate" type="date" id="dates" value="2022-05-05" class="form-control">
+                 {{bookingDate}}
              </div>
          </div>
          <div class="select_person_side">
@@ -674,11 +677,11 @@
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
-                         <button type="button" @click="Adult++">
+                         <button type="button" @click="incrementAdult">
                              <i class="fas fa-plus"></i>
                          </button>
                          <span> {% verbatim %} {{ Adult }} {% endverbatim %}</span>
-                         <button type="button" @click="Adult--">
+                         <button type="button" @click="decrementAdult">
                              <i class="fas fa-minus"></i>
                          </button>
                      </div>
@@ -691,11 +694,11 @@
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
-                         <button type="button" @click="Children++">
+                         <button type="button" @click="incrementChildren">
                              <i class="fas fa-plus"></i>
                          </button>
                          <span> {% verbatim %}  {{ Children }} {% endverbatim %}</span>
-                         <button type="button"  @click="Children--">
+                         <button type="button"  @click="decrementChildren">
                              <i class="fas fa-minus"></i>
                          </button>
                      </div>
@@ -708,11 +711,11 @@
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
-                         <button type="button" @click="Infant++">
+                         <button type="button" @click="incrementInfant">
                              <i class="fas fa-plus" ></i>
                          </button>
                          <span>{% verbatim %} {{ Infant }} {% endverbatim %}</span>
-                         <button type="button" @click="Infant--">
+                         <button type="button" @click="decrementInfant">
                              <i class="fas fa-minus"></i>
                          </button>
                      </div>
@@ -751,8 +754,8 @@
     {% block custom_script %}
 
      <!-- Slick js -->
+     
      <script src="https://unpkg.com/vue@next"></script>
-
      <script src="{% static 'assets/js/slick.min.js' %}"></script>
      <script src="{% static 'assets/js/slick-slider.js' %}"></script>
      <script src="{% static 'assets/js/custom-vue.js' %}"></script>
