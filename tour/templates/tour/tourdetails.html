@@ -283,13 +283,13 @@
                                 {% for price in tour.price.all %}
                                 <h5>Price</h5>
                                 <div class="tour_package_bar_price">
-                                    <h6><del>AED {{ price.adult_price }}</del></h6>
-                                    <h3>AED 250 <sub>/per Adult</sub> </h3>
+                                    <h6><del>AED {{ price.adult_price|floatformat:0 }}</del></h6>
+                                    <h3>AED {{ price.adult_price|floatformat:0 }} <sub>/per Adult</sub> </h3>
                                     
                                 </div>
                                 <div class="tour_package_bar_price">
                                     <h6><del>AED 250</del></h6>
-                                    <h3>AED 150 <sub>/per Child</sub> </h3>
+                                    <h3>AED {{ price.child_price|floatformat:0 }} <sub>/per Child</sub> </h3>
                                     
                                 </div>
                                 {% endfor %}
@@ -673,7 +673,7 @@
              <div class="select_person_item">
                  <div class="select_person_left">
                      <h6>Adult</h6>
-                     <p>12y+</p>
+                     <p>12y+</p><span> {{ adult_price }} </span>
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
@@ -690,7 +690,7 @@
              <div class="select_person_item">
                  <div class="select_person_left">
                      <h6>Children</h6>
-                     <p>2 - 12 years</p>
+                     <p>2 - 12 years</p><span> {{ child_price }} </span>
                  </div>
                  <div class="select_person_right">
                      <div class="button-set">
@@ -720,12 +720,25 @@
                          </button>
                      </div>
                  </div>
+                 
+             </div>
+             <div class="select_person_item">
+                 <div class="select_person_left">
+                     <h6>Total</h6>
+                     <p></p>
+                 </div>
+                 <div class="select_person_right">
+                     Aed : {% verbatim %} {{ subTotal }} {% endverbatim %}
+                 </div>
+                 
              </div>
              <div class="write_spical_not">
                  <label for="texts">Write any special note</label>
                  <textarea rows="5" class="form-control" id="texts"
                      placeholder="Write any special note"></textarea>
              </div>
+
+
              <div class="form-check write_spical_check">
                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultf1">
                  <label class="form-check-label" for="flexCheckDefaultf1">

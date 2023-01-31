@@ -147,7 +147,11 @@ def tourDetail(request, slug):
 
     tour_service = TourService.objects.all()
     tour = Tour.objects.get(slug=slug)
-    
+    for price in tour.price.all() :
+        adult_price = price.adult_price 
+        child_price = price.child_price 
+        infant_price = price.infant_price 
+   
     if request.method == 'POST':
         quantity = request.POST.get('quantity')
         print(quantity)        
@@ -156,7 +160,7 @@ def tourDetail(request, slug):
     tour_gallery = TourGallery.objects.all()
     reviews = ReviewRating.objects.all()
     
-    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews }
+    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews, "adult_price":adult_price, "child_price":child_price }
     return render( request, "tour/tourdetails.html", context )
 
 
