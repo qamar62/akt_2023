@@ -74,6 +74,11 @@ def faq(request):
     faqs = Faq.objects.all()
     context = {'faqs':faqs, 'faq_services':faq_services}
     return render(request, "frontend/faqs.html", context)
+
+def privacyPage(request):
+    
+    context = {}
+    return render(request, "frontend/privacy-policy.html", context)
     
 
 

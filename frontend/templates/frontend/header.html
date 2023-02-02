@@ -18,8 +18,14 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <ul class="topbar-others-options">
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Sign up</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li><a href="">Welcome : {{ user.username|capfirst }}</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'user-page' %}">UserPage</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Sign up</a></li>
+                        {% endif %}
                         <li>
                             <div class="dropdown language-option">
                                 <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -152,6 +158,9 @@
                                     
                                     <li class="nav-item">
                                         <a href="{% url 'faq' %}" class="nav-link">FAQ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{% url 'privacy' %}" class="nav-link">Privacy Policy</a>
                                     </li>
                                     
                                     <li class="nav-item">

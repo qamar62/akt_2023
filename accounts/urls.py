@@ -11,7 +11,7 @@ urlpatterns = [
     # path('dashboard', views.home, name='dashboard'),
    
     path('user/', views.userPage, name = 'user-page'),
-    path('account/', views.accountSettings, name = 'account'),
+    path('account/', views.accountSettings, name = 'profileSetting'),
 
     path('customer/<str:pk>/', views.customer, name = 'customer'),
     path('totaltours/', views.tours, name = 'tours'),

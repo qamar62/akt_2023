@@ -164,12 +164,22 @@ def userPage(request):
     
     }
     
-    return render(request, 'accounts/useradmin.html', context)
+    return render(request, 'accounts/dashboard.html', context)
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['customer'])
 def accountSettings(request):
+    wishlist = Otour.objects.filter(user_wishlist=request.user)
+    bookings = request.user.customer.booking_set.all()
+
+
+    total_bookings = bookings.count()
+    pending = bookings.filter(status = 'Payment Pending').count()
+    booked = bookings.filter(status = 'Booked').count()
+    reconfirmed = bookings.filter(status = 'Reconfirmed').count()
+    
+    
     customer = request.user.customer
     form = CustomerForm(instance = customer)
 
@@ -178,8 +188,18 @@ def accountSettings(request):
         if form.is_valid():
             form.save()
 
-    context = {'form':form}
-    return render(request, 'accounts/account_settings.html', context)
+    context = {'form':form, 
+               'bookings':bookings,
+                'total_bookings': total_bookings, 
+                'pending':pending,
+                'booked':booked,
+                'reconfirmed':reconfirmed,
+                'form':form,
+                'customer':customer,
+                'wishlist':wishlist
+               
+               }
+    return render(request, 'accounts/my-profile.html', context)
 
 
 
