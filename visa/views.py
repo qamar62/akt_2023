@@ -20,3 +20,15 @@ def addVisa(request):
 
     context = {'form':form}
     return render(request, "visa/add_visa.html", context)
+
+def visaDetail(request):
+    
+
+    context = {}
+    return render(request, "visa/visa-details.html", context)
+
+def visaInfo(request):
+    
+
+    context = {}
+    return render(request, "visa/visa-info.html", context)
