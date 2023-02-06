@@ -259,7 +259,7 @@
                         </div>
                         <div class="tour_select_offer_bar_bottom">
                             <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Select
+                                data-bs-target="#offcanvasRightPrivate" aria-controls="offcanvasRightPrivate">Select
                                 offer</button>
                         </div>
                     </div>
@@ -650,13 +650,13 @@
 
 
 
- <!-- Offcanvas Area -->
+ <!-- Offcanvas Area  sharing -->
  
   <div id="canvas">
  <div class="offcanvas select_offer_modal offcanvas-end" tabindex="-1" id="offcanvasRight"
  aria-labelledby="offcanvasRightLabel">
  <div class="offcanvas-header">
-     <h5 id="offcanvasRightLabel">Book now</h5>
+     <h5 id="offcanvasRightLabel">Book now - Sharing</h5>
      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
  </div>
  <div class="offcanvas-body">
@@ -722,6 +722,82 @@
                  </div>
                  
              </div>
+             <div class="select_person_item">
+                 <div class="select_person_left">
+                     <h6>Total</h6>
+                     <p></p>
+                 </div>
+                 <div class="select_person_right">
+                     AED : {% verbatim %} {{ subTotal }} {% endverbatim %}
+                 </div>
+                 
+             </div>
+             <div class="write_spical_not">
+                 <label for="texts">Write any special note</label>
+                 <textarea rows="5" class="form-control" id="texts"
+                     placeholder="Write any special note"></textarea>
+             </div>
+
+
+             <div class="form-check write_spical_check">
+                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultf1">
+                 <label class="form-check-label" for="flexCheckDefaultf1">
+                     <span class="main_spical_check">
+                         <span>I read and accept all <a href="terms-service.html">Terms and conditios</a></span>
+                        
+                     </span>
+                 </label>
+             </div>
+         </div>
+     </div>
+ </div>
+ <div class="proceed_booking_btn ">
+     <a href="{% url 'checkout' tour.slug %}" class="btn btn_theme btn_md w-100">Proceed to Booking</a>
+ </div>
+</div>
+</div>
+
+
+<!-- offcanvas Private -->
+  <div id="canvasPrivate">
+ <div class="offcanvas select_offer_modal offcanvas-end" tabindex="-1" id="offcanvasRightPrivate"
+ aria-labelledby="offcanvasRightLabel">
+ <div class="offcanvas-header">
+     <h5 id="offcanvasRightLabel">Book now - Private</h5>
+     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+ </div>
+ <div class="offcanvas-body">
+     <div class="side_canvas_wrapper">
+         <div class="travel_date_side">
+             <div class="form-group">
+                 <label for="dates">Select your travel date</label>
+                 <input name="bookingDate" v-model="bookingDate" type="date" id="dates" value="2022-05-05" class="form-control">
+                 
+             </div>
+         </div>
+         <div class="select_person_side">
+             <h3>Select person</h3>
+             <div class="select_person_item">
+                 <div class="select_person_left">
+                     <h6>Total Person : {% verbatim %} {{ Person  }} {% endverbatim %}</h6>
+                     <h6>Car : {% verbatim %} {{ car_qty }} {% endverbatim %}</h6>
+                     <p v-if="errorMessage" class="text-danger">{% verbatim %} {{ errorMessage }} {% endverbatim %}</p>
+                     
+                 </div>
+                 <div class="select_person_right">
+                     <div class="button-set">
+                         <button type="button" @click="decrementPerson">
+                             <i class="fas fa-minus"></i>
+                         </button>
+                         <span> {% verbatim %} {{ Person  }} {% endverbatim %}</span>
+                         <button type="button" @click="incrementPerson">
+                             <i class="fas fa-plus"></i>
+                         </button>
+                     </div>
+                 </div>
+             </div>
+             
+             
              <div class="select_person_item">
                  <div class="select_person_left">
                      <h6>Total</h6>

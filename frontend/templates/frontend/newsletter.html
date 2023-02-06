@@ -15,11 +15,13 @@
             </div>
             <div class="col-lg-5">
                 <div class="cat_form">
-                    <form id="cta_form_wrappper">
-                        <div class="input-group"><input type="text" class="form-control"
+                    <form id="cta_form_wrappper" method="POST" action="{% url 'newsletter' %}">
+                        {% csrf_token %}
+                        <div class="input-group"><input type="text" name="email_newsletter_2" class="form-control"
                                 placeholder="Enter your mail address"><button class="btn btn_theme btn_md"
-                                type="button">Subscribe</button></div>
+                                type="submit">Subscribe</button></div>
                     </form>
+                    {% include 'frontend/alert.html' %}
                 </div>
             </div>
         </div>

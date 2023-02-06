@@ -7,7 +7,7 @@ const app = Vue.createApp({
                Infant: 0,
                adult_price : 350 ,
                child_price : 250 ,
-               infant_price : 150 ,
+               infant_price : 0 ,
                adultTotal : 0,
                childTotal:0,
                infantTotal:0,
@@ -100,4 +100,90 @@ const appBooking = Vue.createApp({
           
      })
      appBooking.mount("#personData")
+
+
+const appPrivateCar = Vue.createApp({
+  data() {
+    return {
+      BookingDate : "",
+      Person:  0,
+      car_price : 1650 ,
+      car_qty :"1" ,
+      subTotal: "",
+      errorMessage : "",
+      
+    }
+      
+      
+      
+      
+    
+  }, 
+  methods: {
+        
+       incrementPerson(){
+         this.Person++
+         if ( this.Person > 6 && this.Person <= 12  ){
+          this.car_qty = 2
+      }
+       if ( this.Person > 12 && this.Person <= 18  ){
+          this.car_qty = 3
+         
+      }
+      
+       if ( this.Person > 18  ){
+        this.errorMessage  = "Sorry only 3 cars at time you can select"
+        this.Person = 18
+          
+      }
+      
+        
+        
+         localStorage.setItem("Person", this.Person)
+         
+         
+         this.subTotal = this.car_price * this.car_qty
+         localStorage.setItem("subTotal", this.subTotal)
+        
+         
+         
+       },
+       
+       
+      decrementPerson(){
+        this.Person--
+        if (this.Person <= 0) {
+          this.Person = 1
+          
+        }
+        if ( this.Person > 1 && this.Person <= 6  ){
+          this.car_qty = 1
+      }
+       if ( this.Person > 6 && this.Person <= 12  ){
+          this.car_qty = 2
+         
+      }
+      
+       if ( this.Person > 18  ){
+        this.errorMessage  = "Sorry only 3 cars at time you can select"
+        this.Person = 18
+          
+      }
+      
+        
+        localStorage.setItem("Person", this.Person)
+        
+        
+        this.subTotal = this.car_price * this.car_qty
+        localStorage.setItem("subTotal", this.subTotal)
+         
+       }
+       
+      
+     }
+     
+  
+})
+
+appPrivateCar.mount("#canvasPrivate")
 

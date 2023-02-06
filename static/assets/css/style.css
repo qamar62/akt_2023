@@ -1651,7 +1651,7 @@ section {
 
 /* --Partner Aarea-- */
 .partner_area_bg {
-    background-image: url('../img/common/video_bg.png');
+    background-image: url('/static/assets/img/home/cover.jpg');
     padding: 70px 0;
     background-repeat: no-repeat;
     background-size: cover;
