@@ -361,11 +361,10 @@
                                 <a href=""><img src="{{city.thumbnail.url}}"
                                         alt="img"></a>
                                 <div class="top_destinations_box_content">
-                                    <h4><a href="{% url 'outbound-detail' city.slug %}">{{ city.name }}</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
+                                    <h4><a href="{% url 'outbound-detail' city.slug %}">{{ city.name }} - </a></h4>
+                                    <p><span class="review_rating">{{ city.no_of_days}} Days {{city.no_of_nights}} Nights</span> <span
+                                            class="review_count"></span></p>
+                                    <h3>99.00 <span>Price starts from</span></h3>
                                 </div>
                             </div>
                         </div>
