@@ -39,7 +39,7 @@ def add_to_wishlist(request, id):
 
 def outbounds(request):
     
-    outbounds_tours = Otour.objects.all()
+    outbounds_tours = Otour.objects.all().filter(available=True)
     outbounds_filter = OutboundFilter(request.GET, queryset=outbounds_tours)
     prices = Price.objects.all()
     paginator = Paginator(outbounds_filter.qs, 6)

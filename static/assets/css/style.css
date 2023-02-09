@@ -2988,6 +2988,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     left: 0;
     padding: 20px 20px;
     width: 100%;
+    border-radius: 15px;
+    background-image: linear-gradient(45deg, #04552cc7 0%, #fffb7d44 100%);
+
+
 }
 
 .top_destinations_box_content h4 {
