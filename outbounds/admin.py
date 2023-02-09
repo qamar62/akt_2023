@@ -32,6 +32,16 @@ class ItineraryAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     
     list_display = ["tour",  'title', 'time', 'detail']
     
+    
+class ExclusionAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    model = Exclusions
+    
+    list_display = ["tour",  'name']
+class InclusionAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    model = Inclusions
+    
+    list_display = ["tour",  'name']
+    
    
     
     
@@ -51,8 +61,8 @@ admin.site.register(Offer)
 admin.site.register(Tag)
 
 admin.site.register(Itinerary, ItineraryAdmin)
-admin.site.register(Exclusions)
-admin.site.register(Inclusions )
+admin.site.register(Exclusions, ExclusionAdmin)
+admin.site.register(Inclusions, InclusionAdmin )
 admin.site.register(Category)
 admin.site.register(OtourGallery)
 admin.site.register(Location)
