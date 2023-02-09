@@ -45,10 +45,11 @@ def outbounds(request):
     paginator = Paginator(outbounds_filter.qs, 6)
     page =  request.GET.get('page', 1)
     paged_tours =  paginator.get_page(page)
+    city_count =  outbounds_tours.count()
         
             
     
-    context = {'outbounds_filter':paged_tours, 'prices':prices, 'outbounds':outbounds_tours}
+    context = {'outbounds_filter':paged_tours, 'prices':prices, 'outbounds':outbounds_tours, "city_count":city_count}
     return render(request, 'outbounds/outbounds.html', context)
 
 
