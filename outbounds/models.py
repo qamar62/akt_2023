@@ -77,6 +77,7 @@ class Otour(models.Model):
     class Meta:
         verbose_name =  'Outbound Tour'
         verbose_name_plural = 'Outbound Tours'
+        ordering = ['-date_created']
     
     
 class Price(models.Model):
