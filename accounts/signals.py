@@ -34,7 +34,7 @@ def send_email_after_registration(sender, instance,created, **kwargs):
         email = instance.email
         token =  instance.email_token
         from_email = settings.EMAIL_HOST_USER
-        message = f'Hi Click on the link to varify your account http://arabiannights.tours/accounts/account-verify/{token}'
+        message = f'Hi Click on the link to varify your account https://arabianknightstours/accounts/account-verify/{token}'
         recipient_list = [email]
         send_mail(subject=subject, message=message, from_email=from_email, recipient_list=recipient_list)
         

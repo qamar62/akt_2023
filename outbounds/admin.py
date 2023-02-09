@@ -27,7 +27,14 @@ class TourPrice(admin.TabularInline):
     model =  Price
     extra = 0
    
-
+class ItineraryAdmin(ImportExportModelAdmin,admin.ModelAdmin):
+    model = Itinerary
+    
+    list_display = ["tour",  'title', 'time', 'detail']
+    
+   
+    
+    
 class TourAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     
     model = Otour
@@ -43,7 +50,7 @@ admin.site.register(Otour, TourAdmin)
 admin.site.register(Offer)
 admin.site.register(Tag)
 
-admin.site.register(Itinerary)
+admin.site.register(Itinerary, ItineraryAdmin)
 admin.site.register(Exclusions)
 admin.site.register(Inclusions )
 admin.site.register(Category)

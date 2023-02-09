@@ -257,6 +257,9 @@
                                 <div class="theme_two_box_img">
                                     <a href="{% url 'tour-detail' tour.slug %}"><img src="{{ tour.thumbnail.url }}" alt="img"></a>
                                     <p><i class="fas fa-map-marker-alt"></i>{{ tour.location }}</p>
+                                    <div class="discount_tab">
+                                        <span>50%</span>
+                                    </div>
                                 </div>
                                 <div class="theme_two_box_content">
                                     <h4><a href="{% url 'tour-detail' tour.slug %}">{{ tour.name }}</a></h4>
@@ -268,133 +271,11 @@
                             </div>
                         </div>
                         {% endfor %}
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href=""><img src="/static/assets/img/tab-img/hotel2.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Indonesia</p>
-                                    <div class="discount_tab">
-                                        <span>50%</span>
-                                    </div>
-
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="">Hotel paradise international</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel3.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Kualalampur</p>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Hotel kualalampur</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel4.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Mariana island</p>
-                                    <div class="discount_tab">
-                                        <span>50%</span>
-                                    </div>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Hotel deluxe</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel5.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Kathmundu, Nepal</p>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Hotel rajavumi</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel6.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Beach view</p>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Thailand grand suit</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel7.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Long island</p>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Zefi resort and spa</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel8.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>Philippine</p>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Manila international resort</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="theme_common_box_two img_hover">
-                                <div class="theme_two_box_img">
-                                    <a href="tour-details.html"><img src="/static/assets/img/tab-img/hotel1.png" alt="img"></a>
-                                    <p><i class="fas fa-map-marker-alt"></i>New beach, Thailand</p>
-                                </div>
-                                <div class="theme_two_box_content">
-                                    <h4><a href="tour-details.html">Kantua hotel, Thailand</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        
+                        
+                       
+                        
                         <div class="col-lg-12">
                             <div class="pagination_area">
                                 <ul class="pagination">
