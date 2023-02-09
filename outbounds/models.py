@@ -55,7 +55,7 @@ class Otour(models.Model):
     slug = models.SlugField(max_length=150, default='null', unique=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)
-    badge = models.CharField(max_length=200, choices=(('Popular', 'Popular'),('Top Rated', 'Top Rated'),))
+    badge = models.CharField(max_length=200, choices=(('Popular', 'Popular'),('Top Rated', 'Top Rated'),('Eid Special', 'Eid Special'),('Christmas', 'Christmas'),('New Year', 'New Year'),))
     seats = models.IntegerField(default=0)
     available = models.BooleanField(default=True)
     user_wishlist = models.ManyToManyField(User, related_name='user_wishlist', blank=True)
