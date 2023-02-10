@@ -53,81 +53,54 @@
                                 <p>(1214 reviewes)</p>
                             </div>
                         </div>
-                        <div class="tour_details_top_bottom">
-                            <div class="toru_details_top_bottom_item">
-                                <div class="tour_details_top_bottom_icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="tour_details_top_bottom_text">
-                                    <h5>Duration</h5>
-                                    <p>10 days</p>
-                                </div>
-                            </div>
-                            <div class="toru_details_top_bottom_item">
-                                <div class="tour_details_top_bottom_icon">
-                                    <i class="fas fa-paw"></i>
-                                </div>
-                                <div class="tour_details_top_bottom_text">
-                                    <h5>Tour type</h5>
-                                    <p>Group tour</p>
-                                </div>
-                            </div>
-                            <div class="toru_details_top_bottom_item">
-                                <div class="tour_details_top_bottom_icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="tour_details_top_bottom_text">
-                                    <h5>Group size</h5>
-                                    <p>50 people</p>
-                                </div>
-                            </div>
-                            <div class="toru_details_top_bottom_item">
-                                <div class="tour_details_top_bottom_icon">
-                                    <i class="fas fa-map-marked"></i>
-                                </div>
-                                <div class="tour_details_top_bottom_text">
-                                    <h5>Location</h5>
-                                    <p>Amazon rain forest</p>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="tour_details_img_wrapper">
                             <div class="slider-for">
+                                {% for image in otour.ogallery.all %}
                                 <div>
-                                    <img src="/static/assets/img/tour/big-img.png" alt="img">
+                                    <img src="{{ image.image1.url }}" alt="img">
+                                </div>
+                                
+                                <div>
+                                    <img src="{{ image.image2.url }}" alt="img">
                                 </div>
                                 <div>
-                                    <img src="/static/assets/img/tour/big-img2.png" alt="img">
+                                    <img src="{{ image.image3.url }}" alt="img">
                                 </div>
                                 <div>
-                                    <img src="/static/assets/img/tour/big-img3.png" alt="img">
+                                    <img src="{{ image.image4.url }}" alt="img">
                                 </div>
                                 <div>
-                                    <img src="{{ otour.thumbnail.url }}" alt="img">
+                                    <img src="{{ image.image5.url }}" alt="img">
                                 </div>
                                 <div>
-                                    <img src="/static/assets/img/tour/big-img5.png" alt="img">
+                                    <img src="{{ image.image6.url }}" alt="img">
                                 </div>
+                                
+                                {% endfor %}
                             </div>
                             <div class="slider-nav">
+                                {% for image in otour.ogallery.all %}
                                 <div>
-                                    <img src="{{ otour.thumbnail.url }}" alt="img">
+                                    <img src="{{ image.image1.url }}" alt="img" width="130" height="46">
+                                </div>
+                                
+                                <div>
+                                    <img src="{{ image.image2.url }}" alt="img" width="130" height="46">
                                 </div>
                                 <div>
-                                    <img src="/static/assets/img/tour/small2-img.png" alt="img">
+                                    <img src="{{ image.image3.url }}" alt="img" width="130" height="46">
                                 </div>
                                 <div>
-                                    <img src="/static/assets/img/tour/small3-img.png" alt="img">
+                                    <img src="{{ image.image4.url }}" alt="img" width="130" height="46">
                                 </div>
                                 <div>
-                                    <img src="{{ otour.thumbnail.url }}" alt="img" width="146" height="130">
+                                    <img src="{{ image.image5.url }}" alt="img" width="130" height="46">
                                 </div>
                                 <div>
-                                    <img src="/static/assets/img/tour/small5-img.png" alt="img">
+                                    <img src="{{ image.image6.url }}" alt="img" width="130" height="46">
                                 </div>
-                                <div>
-                                    <img src="/static/assets/img/tour/small6-img.png" alt="img">
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="tour_details_boxed">
@@ -233,132 +206,53 @@
                     <div class="tour_details_right_sidebar_wrapper">
                         <div class="tour_detail_right_sidebar">
                             <div class="tour_details_right_boxed">
+                               
                                 <div class="tour_details_right_box_heading">
-                                    <h3>Standard package</h3>
+                                    <h3>Inquire Now</h3>
                                 </div>
-                                <div class="valid_date_area">
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid from</h5>
-                                        <p>01 Feb 2022</p>
+                                <form action="" id="contact_form_content">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control bg_input" placeholder="First name*">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control bg_input" placeholder="Last name*">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control bg_input"
+                                                    placeholder="Email address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control bg_input"
+                                                    placeholder="Mobile number*">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control bg_input" rows="5"
+                                                    placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                       
                                     </div>
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid till</h5>
-                                        <p>15 Feb 2022</p>
-                                    </div>
-                                </div>
-                                <div class="tour_package_details_bar_list">
-                                    <h5>Package details</h5>
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
-                                <div class="tour_package_details_bar_price">
-                                    <h5>Price</h5>
-                                    <div class="tour_package_bar_price">
-                                        <h6><del>$ 35,500</del></h6>
-                                        <h3>$ 30,500 <sub>/Per serson</sub> </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tour_select_offer_bar_bottom">
-                                <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Select
-                                    offer</button>
-                            </div>
+                                
                         </div>
-                        <div class="tour_detail_right_sidebar">
-                            <div class="tour_details_right_boxed">
-                                <div class="tour_details_right_box_heading">
-                                    <h3>Deluxe package</h3>
-                                </div>
-                                <div class="valid_date_area">
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid from</h5>
-                                        <p>01 Feb 2022</p>
-                                    </div>
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid till</h5>
-                                        <p>15 Feb 2022</p>
-                                    </div>
-                                </div>
-                                <div class="tour_package_details_bar_list">
-                                    <h5>Package details</h5>
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
-                                <div class="tour_package_details_bar_price">
-                                    <h5>Price</h5>
-                                    <div class="tour_package_bar_price">
-                                        <h6><del>$ 35,500</del></h6>
-                                        <h3>$ 30,500 <sub>/Per serson</sub> </h3>
-                                    </div>
-                                </div>
-                            </div>
+                        
+                        
+                        
                             <div class="tour_select_offer_bar_bottom">
                                 <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Select
-                                    offer</button>
+                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Submit
+                                    </button>
                             </div>
-                        </div>
-                        <div class="tour_detail_right_sidebar">
-                            <div class="tour_details_right_boxed">
-                                <div class="tour_details_right_box_heading">
-                                    <h3>Super deluxe package</h3>
-                                </div>
-                                <div class="valid_date_area">
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid from</h5>
-                                        <p>01 Feb 2022</p>
-                                    </div>
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid till</h5>
-                                        <p>15 Feb 2022</p>
-                                    </div>
-                                </div>
-                                <div class="tour_package_details_bar_list">
-                                    <h5>Package details</h5>
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
-                                <div class="tour_package_details_bar_price">
-                                    <h5>Price</h5>
-                                    <div class="tour_package_bar_price">
-                                        <h6><del>$ 35,500</del></h6>
-                                        <h3>$ 30,500 <sub>/Per serson</sub> </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tour_select_offer_bar_bottom">
-                                <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Select
-                                    offer</button>
-                            </div>
+                        </form>
                         </div>
                         <div class="tour_detail_right_sidebar">
                             <div class="tour_details_right_boxed">
@@ -708,94 +602,7 @@
 
 
 
-     <!-- Offcanvas Area -->
-     <div class="offcanvas select_offer_modal offcanvas-end" tabindex="-1" id="offcanvasRight"
-     aria-labelledby="offcanvasRightLabel">
-     <div class="offcanvas-header">
-         <h5 id="offcanvasRightLabel">Book now</h5>
-         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-     </div>
-     <div class="offcanvas-body">
-         <div class="side_canvas_wrapper">
-             <div class="travel_date_side">
-                 <div class="form-group">
-                     <label for="dates">Select your travel date</label>
-                     <input type="date" id="dates" value="2022-05-05" class="form-control">
-                 </div>
-             </div>
-             <div class="select_person_side">
-                 <h3>Select person</h3>
-                 <div class="select_person_item">
-                     <div class="select_person_left">
-                         <h6>Adult</h6>
-                         <p>12y+</p>
-                     </div>
-                     <div class="select_person_right">
-                         <div class="button-set">
-                             <button type="button">
-                                 <i class="fas fa-plus"></i>
-                             </button>
-                             <span>01</span>
-                             <button type="button">
-                                 <i class="fas fa-minus"></i>
-                             </button>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="select_person_item">
-                     <div class="select_person_left">
-                         <h6>Children</h6>
-                         <p>2 - 12 years</p>
-                     </div>
-                     <div class="select_person_right">
-                         <div class="button-set">
-                             <button type="button">
-                                 <i class="fas fa-plus"></i>
-                             </button>
-                             <span>01</span>
-                             <button type="button">
-                                 <i class="fas fa-minus"></i>
-                             </button>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="select_person_item">
-                     <div class="select_person_left">
-                         <h6>Infant</h6>
-                         <p>Below 2 years</p>
-                     </div>
-                     <div class="select_person_right">
-                         <div class="button-set">
-                             <button type="button">
-                                 <i class="fas fa-plus"></i>
-                             </button>
-                             <span>01</span>
-                             <button type="button">
-                                 <i class="fas fa-minus"></i>
-                             </button>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="write_spical_not">
-                     <label for="texts">Write any special note</label>
-                     <textarea rows="5" class="form-control" id="texts"
-                         placeholder="Write any special note"></textarea>
-                 </div>
-                 <div class="form-check write_spical_check">
-                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultf1">
-                     <label class="form-check-label" for="flexCheckDefaultf1">
-                         <span class="main_spical_check">
-                             <span>I read and accept all <a href="terms-service.html">Terms and conditios</a></span>
-                         </span>
-                     </label>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="proceed_booking_btn ">
-         <a href="{% url 'ocheckout' otour.slug %}" class="btn btn_theme btn_md w-100">Proceed to Booking</a>
-     </div>
- </div>
+     
   
 
     
