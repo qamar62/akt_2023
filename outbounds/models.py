@@ -58,8 +58,8 @@ class Otour(models.Model):
     date_updated = models.DateTimeField(auto_now=True, null=True)
     badge = models.CharField(max_length=200, choices=(('Popular', 'Popular'),('Top Rated', 'Top Rated'),('Eid Special', 'Eid Special'),('Christmas', 'Christmas'),('New Year', 'New Year'),))
     seats = models.IntegerField(default=0)
-    long = models.DecimalField(max_digits=22, decimal_places=16, blank=True, null=True)
-    lat = models.DecimalField(max_digits=22, decimal_places=16, blank=True, null=True)
+    long = models.DecimalField(max_digits=22, decimal_places=16, blank=True, null=True, help_text='Longitude ')
+    lat = models.DecimalField(max_digits=22, decimal_places=16, blank=True, null=True, help_text='Latitude')
     available = models.BooleanField(default=True)
     user_wishlist = models.ManyToManyField(User, related_name='user_wishlist', blank=True)
 
