@@ -66,6 +66,7 @@ admin.site.register(Inclusions, InclusionAdmin )
 admin.site.register(Category)
 admin.site.register(OtourGallery)
 admin.site.register(Location)
+admin.site.register(Inquiry)
 
 
 

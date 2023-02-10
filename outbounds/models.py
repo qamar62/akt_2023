@@ -175,3 +175,13 @@ class Offer(models.Model):
 
 
 auditlog.register(Otour)
+
+
+class Inquiry(models.Model):
+    fullname = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    mobile = models.CharField(max_length=50)
+    message = models.CharField(max_length=250)
+    
+    def __str__(self):
+        return  self.fullname

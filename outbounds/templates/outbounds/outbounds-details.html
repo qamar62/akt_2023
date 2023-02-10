@@ -203,78 +203,57 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4" id="inquiryForm">
                     <div class="tour_details_right_sidebar_wrapper">
                         <div class="tour_detail_right_sidebar">
                             <div class="tour_details_right_boxed">
                                
-                                <div class="tour_details_right_box_heading">
+                                <div class="tour_details_right_box_heading mb-3">
                                     <h3>Inquire Now</h3>
                                 </div>
-                                <form action="" id="contact_form_content">
+                                <form  method="POST" id="contact_form_content">
+                                {% csrf_token %}
+                                
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control bg_input" placeholder="First name*">
+                                                <input v-model="form.fullname" name="fullname" id="fullname" type="text" class="form-control bg_input" placeholder="Full name*">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        
+                                        <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control bg_input" placeholder="Last name*">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control bg_input"
-                                                    placeholder="Email address">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control bg_input"
-                                                    placeholder="Mobile number*">
+                                                <input v-model="form.email" name="email" id="email" type="text" class="form-control bg_input"
+                                                    placeholder="Email address*">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <textarea class="form-control bg_input" rows="5"
+                                                <span>{% verbatim %} {{ form.mobile}} {% endverbatim %} </span>
+                                                <input v-model="form.mobile" name="mobile" id="mobile" type="text" class="form-control bg_input"
+                                                    placeholder="Mobile With country code*">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <textarea v-model="form.message" name="message" id="message" class="form-control bg_input" rows="5"
                                                     placeholder="Message"></textarea>
                                             </div>
                                         </div>
                                        
                                     </div>
+                                    <div class="tour_select_offer_bar_bottom">
+                                        <button class="btn btn_theme btn_md w-100" type="submit">Submit</button>
+                                    </div>
+                                </form>
                                 
                         </div>
                         
                         
                         
-                            <div class="tour_select_offer_bar_bottom">
-                                <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas"
-                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Submit
-                                    </button>
-                            </div>
-                        </form>
+                          
                         </div>
-                        <div class="tour_detail_right_sidebar">
-                            <div class="tour_details_right_boxed">
-                                <div class="tour_details_right_box_heading">
-                                    <h3>Why choose us</h3>
-                                </div>
-
-                                <div class="tour_package_details_bar_list first_child_padding_none">
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
                 </div>
@@ -615,8 +594,10 @@
     {% block custom_script %}
 
      <!-- Slick js -->
+     <script src="https://unpkg.com/vue@next"></script>
      <script src="{% static 'assets/js/slick.min.js' %}"></script>
      <script src="{% static 'assets/js/slick-slider.js' %}"></script>
+     <script src="{% static 'assets/js/outbounds-vue.js' %}"></script>
 
      {% endblock %}
 

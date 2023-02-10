@@ -2,7 +2,7 @@ from http.client import HTTPResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import datetime
 from cart.models import Cart, CartItem
-from . models import Itinerary, Otour, Price
+from . models import Itinerary, Otour, Price , Inquiry
 # Create your views here.
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .filters import OutboundFilter
@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
-
+from .forms  import InquiryForm
 
 
 @login_required
@@ -46,7 +46,10 @@ def outbounds(request):
     page =  request.GET.get('page', 1)
     paged_tours =  paginator.get_page(page)
     city_count =  outbounds_tours.count()
-        
+
+    
+   
+    
             
     
     context = {'outbounds_filter':paged_tours, 'prices':prices, 'outbounds':outbounds_tours, "city_count":city_count}
@@ -57,6 +60,37 @@ def outbound_detail(request, slug):
     
     
     otour = Otour.objects.get(slug=slug)
+    
+    if request.method == "POST":
+        form  = InquiryForm(request.POST)
+        if form.is_valid():
+            data = Inquiry()
+            data.fullname = form.cleaned_data["fullname"]
+            data.email = form.cleaned_data["email"]
+            data.mobile = form.cleaned_data["mobile"]
+            data.message = form.cleaned_data["message"]
+            data.save()
+            
+            html_template = 'outbounds/inquiry_email.html'
+            subject = 'Thank you for your inquiry!'
+            html_message = render_to_string(html_template, {
+                
+                'FullName': data.fullname,
+                'mobile': data.mobile,
+                'message':data.message,
+                
+            })
+            recipient_list = ["outbound@ant.ae"]
+            email_from = settings.EMAIL_HOST_USER
+            message = EmailMessage(subject, html_message, email_from, recipient_list)
+            message.content_subtype = "html"
+            message.send()
+            
+            return redirect("outbounds")
+        else : 
+            messages.success(request, "Message not sent fill carefully")
+    
+    
     
     context = {'otour':otour, }
     return render(request, 'outbounds/outbounds-details.html', context)
@@ -163,3 +197,11 @@ def Oconfirmation(request):
 
 def Oinvoice(request):
     pass
+
+
+
+    
+
+    
+      
+        
