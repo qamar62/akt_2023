@@ -92,41 +92,51 @@
                     </div>
                     <div class="tour_details_img_wrapper">
                         <div class="slider-for">
+                            {% for image in otour.ogallery.all %}
                             <div>
-                                <img src="/static/assets/img/tour/big-img.png" alt="img">
+                                <img src="{{ image.image1.url }}" alt="img">
+                            </div>
+                            
+                            <div>
+                                <img src="{{ image.image2.url }}" alt="img">
                             </div>
                             <div>
-                                <img src="/static/assets/img/tour/big-img2.png" alt="img">
+                                <img src="{{ image.image3.url }}" alt="img">
                             </div>
                             <div>
-                                <img src="/static/assets/img/tour/big-img3.png" alt="img">
+                                <img src="{{ image.image4.url }}" alt="img">
                             </div>
                             <div>
-                                <img src="{{ tour.thumbnail.url }}" alt="img">
+                                <img src="{{ image.image5.url }}" alt="img">
                             </div>
                             <div>
-                                <img src="/static/assets/img/tour/big-img5.png" alt="img">
+                                <img src="{{ image.image6.url }}" alt="img">
                             </div>
+                            
+                            {% endfor %}
                         </div>
                         <div class="slider-nav">
+                            {% for image in otour.ogallery.all %}
                             <div>
-                                <img src="{{ tour.thumbnail.url }}" alt="img">
+                                <img src="{{ image.image1.url }}" alt="img" width="130" height="46">
+                            </div>
+                            
+                            <div>
+                                <img src="{{ image.image2.url }}" alt="img" width="130" height="46">
                             </div>
                             <div>
-                                <img src="/static/assets/img/tour/small2-img.png" alt="img">
+                                <img src="{{ image.image3.url }}" alt="img" width="130" height="46">
                             </div>
                             <div>
-                                <img src="/static/assets/img/tour/small3-img.png" alt="img">
+                                <img src="{{ image.image4.url }}" alt="img" width="130" height="46">
                             </div>
                             <div>
-                                <img src="{{ tour.thumbnail.url }}" alt="img" width="146" height="130">
+                                <img src="{{ image.image5.url }}" alt="img" width="130" height="46">
                             </div>
                             <div>
-                                <img src="/static/assets/img/tour/small5-img.png" alt="img">
+                                <img src="{{ image.image6.url }}" alt="img" width="130" height="46">
                             </div>
-                            <div>
-                                <img src="/static/assets/img/tour/small6-img.png" alt="img">
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="tour_details_boxed">

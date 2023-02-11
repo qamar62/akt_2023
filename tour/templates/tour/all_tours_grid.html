@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="section_heading_center">
-                        <h2>42 tours found</h2>
+                        <h2>{{ tour_count }}</h2>
                     </div>
                 </div>
             </div>
@@ -266,7 +266,9 @@
                                     <p><span class="review_rating">4.8/5 Excellent</span> <span
                                             class="review_count">(1214
                                             reviewes)</span></p>
-                                    <h3>$99.00 <span>Price starts from</span></h3>
+                                            {% for price in tour.price.all %}
+                                    <h3> {{ price.child_price | floatformat:0}}<sub> AED</sub> <span>Price starts from</span></h3>
+                                    {%endfor %}
                                 </div>
                             </div>
                         </div>

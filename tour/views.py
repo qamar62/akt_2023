@@ -188,19 +188,6 @@ def submit_review(request, tour_id):
                 messages.success(request, 'Thank you! Your review has been submitted.')
                 return redirect(url)
 
-def toursList(request):
-    tours = Tour.objects.all()
-
-    #setup pagination
-    paginator = Paginator(Tour.objects.all(), 3)
-    page =  request.GET.get('page')
-    paged_tours =  paginator.get_page(page)
-    tour_count =  tours.count()
-
-
-    context = {'tours': paged_tours, 'tour_count':tour_count}
-    return render( request, "tour/all_tours_list.html", context )
-
 def toursGrid(request):
     tours = Tour.objects.all()
     paginator = Paginator(Tour.objects.all(), 3)
