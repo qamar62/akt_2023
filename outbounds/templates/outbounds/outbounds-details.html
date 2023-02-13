@@ -478,7 +478,7 @@
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
-                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page6.png"
+                            <a href="{% url 'outbound-detail' city.slug %}"><img src="{{city.thumbnail.url}}"
                                     alt="img"></a>
                                     <div class="top_destinations_box_content">
                                         <h4 ><a href="{% url 'outbound-detail' city.slug %}">{{ city.name }} </a></h4>
