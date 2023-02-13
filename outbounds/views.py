@@ -58,7 +58,7 @@ def outbounds(request):
 
 def outbound_detail(request, slug):
     
-    
+    outbounds = Otour.objects.all().filter(available=True)
     otour = Otour.objects.get(slug=slug)
     
     if request.method == "POST":
@@ -92,7 +92,7 @@ def outbound_detail(request, slug):
     
     
     
-    context = {'otour':otour, }
+    context = {'otour':otour, 'outbounds':outbounds}
     return render(request, 'outbounds/outbounds-details.html', context)
 
 def ocheckout(request, slug):
