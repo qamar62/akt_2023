@@ -58,7 +58,7 @@ def outbounds(request):
 
 def outbound_detail(request, slug):
     
-    outbounds = Otour.objects.all().filter(available=True)
+    outbounds = Otour.objects.all().filter(available=True)[:5]
     otour = Otour.objects.get(slug=slug)
     
     if request.method == "POST":
