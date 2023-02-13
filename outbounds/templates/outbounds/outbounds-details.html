@@ -103,31 +103,7 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <div class="tour_details_boxed">
-                            <h3 class="heading_theme">Overview</h3>
-                            <div class="tour_details_boxed_inner">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                                    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                                    takimata sanctus est.
-                                </p>
-                                <p>
-                                    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.
-                                </p>
-                                <ul>
-                                    <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                    <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian culture
-                                    </li>
-                                    <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire, and Cultural
-                                        Dance at Camp</li>
-                                    <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver allowances
-                                    </li>
-                                    <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle (SUV/Sedan) for
-                                        sightseeing on all days as per the itinerary.</li>
-                                </ul>
-                            </div>
-                        </div>
+                        
                         <div class="tour_details_boxed">
                             <h3 class="heading_theme">Itinerary</h3>
                             {% for itin in otour.itinerary.all %}
@@ -495,85 +471,25 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
+                    
                     <div class="promotional_tour_slider owl-theme owl-carousel dot_style">
+                        {% for city in outbounds_filter %}
                         <div class="top_destinations_box img_hover">
                             <div class="heart_destinations">
                                 <i class="fas fa-heart"></i>
                             </div>
                             <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page6.png"
                                     alt="img"></a>
-                            <div class="top_destinations_box_content">
-                                <h4><a href="top-destinations-details.html">Kathmundu</a></h4>
-                                <p><span class="review_rating">4.8/5 Excellent</span> <span class="review_count">(1214
-                                        reviewes)</span></p>
-                                <h3>$99.00 <span>Price starts from</span></h3>
-                            </div>
+                                    <div class="top_destinations_box_content">
+                                        <h4 ><a href="{% url 'outbound-detail' city.slug %}">{{ city.name }} </a></h4>
+                                        <p><span class="review_rating">{{ city.no_of_days}} Days  - {{city.no_of_nights}} Nights</span> <span
+                                                class="review_count"></span></p>
+                                                {% for price in city.price.all %}
+                                        <h3>{{ price.price}} <sup>AED</sup> <span>Price starts from</span></h3> {% endfor %}
+                                    </div>
                         </div>
-                        <div class="top_destinations_box img_hover">
-                            <div class="heart_destinations">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page5.png"
-                                    alt="img"></a>
-                            <div class="top_destinations_box_content">
-                                <h4><a href="top-destinations-details.html">Himalaya</a></h4>
-                                <p><span class="review_rating">4.8/5 Excellent</span> <span class="review_count">(1214
-                                        reviewes)</span></p>
-                                <h3>$99.00 <span>Price starts from</span></h3>
-                            </div>
-                        </div>
-                        <div class="top_destinations_box img_hover">
-                            <div class="heart_destinations">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <a href="top-destinations-details.html"><img src="assets/img/destination/main-page4.png"
-                                    alt="img"></a>
-                            <div class="top_destinations_box_content">
-                                <h4><a href="top-destinations-details.html">Beautiful darjeeling</a></h4>
-                                <p><span class="review_rating">4.8/5 Excellent</span> <span class="review_count">(1214
-                                        reviewes)</span></p>
-                                <h3>$99.00 <span>Price starts from</span></h3>
-                            </div>
-                        </div>
-                        <div class="top_destinations_box img_hover">
-                            <div class="heart_destinations">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page3.png"
-                                    alt="img"></a>
-                            <div class="top_destinations_box_content">
-                                <h4><a href="top-destinations-details.html">Annapurna</a></h4>
-                                <p><span class="review_rating">4.8/5 Excellent</span> <span class="review_count">(1214
-                                        reviewes)</span></p>
-                                <h3>$99.00 <span>Price starts from</span></h3>
-                            </div>
-                        </div>
-                        <div class="top_destinations_box img_hover">
-                            <div class="heart_destinations">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page2.png"
-                                    alt="img"></a>
-                            <div class="top_destinations_box_content">
-                                <h4><a href="top-destinations-details.html">Explore china</a></h4>
-                                <p><span class="review_rating">4.8/5 Excellent</span> <span class="review_count">(1214
-                                        reviewes)</span></p>
-                                <h3>$99.00 <span>Price starts from</span></h3>
-                            </div>
-                        </div>
-                        <div class="top_destinations_box img_hover">
-                            <div class="heart_destinations">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <a href="top-destinations-details.html"><img src="/static/assets/img/destination/main-page1.png"
-                                    alt="img"></a>
-                            <div class="top_destinations_box_content">
-                                <h4><a href="top-destinations-details.html">Ancient egypt</a></h4>
-                                <p><span class="review_rating">4.8/5 Excellent</span> <span class="review_count">(1214
-                                        reviewes)</span></p>
-                                <h3>$99.00 <span>Price starts from</span></h3>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        
                     </div>
                 </div>
             </div>
