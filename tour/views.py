@@ -144,7 +144,7 @@ def confirmation(request):
 
 
 def tourDetail(request, slug):
-
+    top_tours = Tour.objects.filter(available=True)[:4]
     tour_service = TourService.objects.all()
     tour = Tour.objects.get(slug=slug)
     for price in tour.price.all() :
@@ -160,7 +160,7 @@ def tourDetail(request, slug):
     tour_gallery = TourGallery.objects.all()
     reviews = ReviewRating.objects.all()
     
-    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews, "adult_price":adult_price, "child_price":child_price }
+    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews, "adult_price":adult_price, "child_price":child_price , "top_tours":top_tours}
     return render( request, "tour/tourdetails.html", context )
 
 
