@@ -42,6 +42,7 @@ class InclusionAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     
     list_display = ["tour",  'name']
     
+    
    
     
     
@@ -54,6 +55,7 @@ class TourAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_filter = ['name']
     inlines = [InclusionTabularInline, ExclusionTabularInline, ItineraryTabularInline, TourOptions, TourPrice]
     date_hierarchy = 'date_created'
+    
 
 
 admin.site.register(Otour, TourAdmin)
