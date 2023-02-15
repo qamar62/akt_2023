@@ -10,7 +10,7 @@ class ContactusForm(forms.ModelForm):
     def __init__(self, *args, **kwargs): 
         super().__init__(*args, **kwargs) 
         self.fields['name'].widget.attrs.update({ 
-            'class': 'form-control', 
+            'class': 'form-control bg_input', 
             'required':'required', 
             'name':'fullname', 
             'type':'text', 
@@ -18,21 +18,21 @@ class ContactusForm(forms.ModelForm):
             }) 
             
         self.fields['email'].widget.attrs.update({ 
-            'class': 'form-control', 
+            'class': 'form-control bg_input', 
             'required':'required', 
             'name':'fullname', 
             'type':'email', 
             'placeholder':'Email', 
             }) 
         self.fields['phone'].widget.attrs.update({ 
-            'class': 'form-control', 
+            'class': 'form-control bg_input', 
             'required':'required', 
             'name':'phone', 
             'type':'text', 
             'placeholder':'Phone ', 
             }) 
         self.fields['message'].widget.attrs.update({ 
-            'class': 'form-control mb-3', 
+            'class': 'form-control  bg_input', 
             'required':'required', 
             'name':'message', 
             'type':'text', 
