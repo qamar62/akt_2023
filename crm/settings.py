@@ -208,8 +208,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_TAGS = {
     messages.ERROR : 'danger',
-    messages.SUCCESS : 'success',
-    messages.INFO : 'info',
+    
 }
 
 REST_FRAMEWORK = {
