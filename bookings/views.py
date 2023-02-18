@@ -74,7 +74,7 @@ def payments(request):
 def create_booking(request, total=0,adult_quantity=0, child_quantity=0):
     current_user = request.user.customer
 
-    
+    request.user.customer
     cart_items = CartItem.objects.filter(user=current_user)
     # cart_count = cart_items.count()
     # if cart_count <= 0:

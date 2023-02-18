@@ -22,6 +22,9 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 
+
+
+
 @login_required
 def wishlist(request):
     tours = Tour.objects.filter(user_wishlist=request.user)
@@ -52,7 +55,7 @@ def checkout(request, slug):
     
     tour = Tour.objects.get(slug=slug)
     
-    current_user = request.user
+    current_user = request.user.customer
     tax = 0
     grand_total = 0
     total = 0
@@ -103,12 +106,12 @@ def checkout(request, slug):
             email_from = settings.EMAIL_HOST_USER
             message = EmailMessage(subject, html_message, email_from, recipient_list)
             message.content_subtype = "html"
-            message.send()
-            client.messages.create(
-                     body=f"Thank you for bchoosing Arabian Nights Tours , Your booking number is {booking_number}",
-                     from_='+14793481542',
-                     to=data.phone,
-                 )
+            # message.send()
+            # client.messages.create(
+            #          body=f"Thank you for bchoosing Arabian Nights Tours , Your booking number is {booking_number}",
+            #          from_='+14793481542',
+            #          to=data.phone,
+            #      )
             
             
             
@@ -124,7 +127,7 @@ def checkout(request, slug):
                 
                 
 
-            return render(request, 'tour/confirmation.html', context)
+            return render(request, 'tour/booking-confirmation.html', context)
 
         else:
             return HttpResponse('Booking not saved')
@@ -138,7 +141,7 @@ def checkout(request, slug):
 def confirmation(request):
     
     context = {}
-    return redirect(request, 'tour/confirmation.html', context)
+    return redirect(request, 'tour/booking-confirmation.html', context)
 
 
 
@@ -200,4 +203,9 @@ def toursGrid(request):
 
     context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter, 'all_tours':tours}
     return render( request, "tour/all_tours_grid.html", context )
+
+
+
+
+
 

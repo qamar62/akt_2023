@@ -35,7 +35,8 @@
                         <div class="booking_tour_form">
                             <h3 class="heading_theme">Booking submission</h3>
                             <div class="tour_booking_form_box">
-                                <form action="!#" id="tour_bookking_form_item">
+                                <form method="POST" id="tour_bookking_form_item">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -63,7 +64,7 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input name="pickup-location" type="text" class="form-control bg_input"
+                                                <input name="pickup_location" type="text" class="form-control bg_input"
                                                     placeholder="Pickup Location with room no. or appt*">
                                             </div>
                                         </div>
@@ -73,98 +74,45 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <select name="country" class="form-control form-select bg_input">
-                                                    <option value="1">Country</option>
-                                                    <option value="1">New York</option>
-                                                    <option value="1">Barisal</option>
-                                                    <option value="1">Nator</option>
-                                                    <option value="1">Joybangla</option>
-                                                </select>
+                                                <input name="country" type="text" class="form-control bg_input"
+                                                    placeholder="Enter Country">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <textarea class="form-control bg_input" name="booking_note" type="text"
+                                                <label> Booking Note</label>
+                                                
+                                                    <input name="booking_note" type="text" class="form-control bg_input"
                                                     placeholder="Booking Note">
-                                                    </textarea>
                                             </div>
                                         </div>
 
                                     </div>
-                                </form>
+                                
                             </div>
                         </div>
                         <div class="booking_tour_form">
                             <h3 class="heading_theme">Payment method</h3>
                             <div class="tour_booking_form_box">
                                 <div class="booking_payment_boxed">
-                                    <form action="!#" id="payment_checked">
+                                    
                                         <div name="paymentMode" class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault1" value="red">
+                                            <input class="form-check-input" type="radio" name="paymentMode"
+                                                id="" value="Payment By Card">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                                 Payment by card
                                             </label>
                                         </div>
                                         
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault4" value="white">
+                                            <input class="form-check-input" type="radio" name="paymentMode"
+                                                id="" value="Cash On Pickup">
                                             <label class="form-check-label" for="flexRadioDefault4">
-                                                Cash on delivery
+                                                Cash on Pickup
                                             </label>
                                         </div>
-                                        <div class="payment_filed_wrapper">
-                                            <div class="payment_card payment_toggle red">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control bg_input"
-                                                                placeholder="Card number">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control bg_input"
-                                                                placeholder="Cardholder name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control bg_input"
-                                                                placeholder="Date of expiry">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control bg_input"
-                                                                placeholder="Security code">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="paypal_payment payment_toggle green">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control bg_input"
-                                                                placeholder="Email Address">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="payoneer_payment payment_toggle black">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control bg_input"
-                                                                placeholder="Email Address">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        
+                                    
                                 </div>
                             </div>
                         </div>
@@ -173,54 +121,25 @@
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaultf1">
                                 <label class="form-check-label" for="flexCheckDefaultf1">
                                     <span class="main_spical_check">
-                                        <span>I read and accept all <a href="terms-service.html">Terms and
+                                        <span>I read and accept all <a href="{% url 'privacy' %}">Terms and
                                                 conditios</a></span>
                                     </span>
                                 </label>
                             </div>
-                            <a href="booking-confirmation.html" class="btn btn_theme btn_md">Submit</a>
+                            
+                            <button type="submit" class="btn btn_theme btn_md">Book </button>
                         </div>
                     </div>
-                
+                </form>
                
                 <div class="col-lg-4">
                     <div class="tour_details_right_sidebar_wrapper">
                         <div class="tour_detail_right_sidebar">
                             <div class="tour_details_right_boxed">
-                                <div class="tour_details_right_box_heading">
-                                    <h3>Super deluxe package</h3>
+                                <div class="col" style="text-transform:none;">
+                                    <img src="{{tour.thumbnail.url}}" width="50" height="50" alt=""> {{ tour.name }}
                                 </div>
-                                <div class="valid_date_area">
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid from</h5>
-                                        <p>01 Feb 2022</p>
-                                    </div>
-                                    <div class="valid_date_area_one">
-                                        <h5>Valid till</h5>
-                                        <p>15 Feb 2022</p>
-                                    </div>
-                                </div>
-                                <div class="tour_package_details_bar_list">
-                                    <h5>Package details</h5>
-                                    <ul>
-                                        <li><i class="fas fa-circle"></i>Buffet breakfast as per the Itinerary</li>
-                                        <li><i class="fas fa-circle"></i>Visit eight villages showcasing Polynesian
-                                            culture
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Complimentary Camel safari, Bonfire,</li>
-                                        <li><i class="fas fa-circle"></i>All toll tax, parking, fuel, and driver
-                                            allowances
-                                        </li>
-                                        <li><i class="fas fa-circle"></i>Comfortable and hygienic vehicle</li>
-                                    </ul>
-                                </div>
-                                <div class="tour_package_details_bar_price">
-                                    <h5>Price</h5>
-                                    <div class="tour_package_bar_price">
-                                        <h6><del>$ 35,500</del></h6>
-                                        <h3>$ 30,500 <sub>/Per serson</sub> </h3>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     <div id="personData">
@@ -268,7 +187,7 @@
                                     </div>
                                 </div>
                                 <div class="edit_person">
-                                    <p>Edit person</p>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
@@ -336,7 +255,7 @@
 
     {% block custom_script %}
     <script src="https://unpkg.com/vue@next"></script>
-    <script src="assets/js/payment-form.js"></script>
+   
     <script src="{% static 'assets/js/custom-vue.js' %}"></script>
     {% endblock %}
 

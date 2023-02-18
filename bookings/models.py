@@ -66,7 +66,7 @@ class Booking(models.Model):
     
     
     def save(self, *args, **kwargs):
-        code = qrcode.make(self.get_absolute_url())
+        code = qrcode.make(self.booking_number)
         qr_offset = Image.new('RGB', (310, 310), 'white')
         qr_offset.paste(code)
         files_name = f'{self.booking_number}qr.png'

@@ -1,0 +1,111 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+
+{% block main %}
+{% include 'frontend/header.html' %}
+    <!-- Common Banner Area -->
+    <section id="common_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_bannner_text">
+                        <h2>Booking Confirmation</h2>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><span><i class="fas fa-circle"></i></span> Booking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Booking Submission Areas -->
+    <section id="tour_booking_submission" class="section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="tou_booking_form_Wrapper">
+                        <div class="tour_booking_form_box mb-4">
+                            <div class="booking_success_arae">
+                                <div class="booking_success_img">
+                                    <img src="/static/assets/img/icon/right.png" alt="img">
+                                </div>
+                                <div class="booking_success_text">
+                                    <h3>{{ booking.user }}, your order was submitted successfully!</h3>
+                                    <h6>Your booking details has been sent to: {{ booking.email }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="booking_tour_form">
+                            <h3 class="heading_theme">Your information</h3>
+                            <div class="tour_booking_form_box">
+                                <div class="your_info_arae">
+                                    <ul>
+                                        <li><span class="name_first">Name:</span> <span
+                                                class="last_name">{{ booking.first_name }}</span></li>
+                                        <li><span class="name_first">Last name:</span> <span
+                                                class="last_name">{{ booking.last_name }}</span></li>
+                                        <li><span class="name_first">Email address:</span> <span
+                                                class="last_name">{{ booking.email }}</span></li>
+                                        <li><span class="name_first">Pickup Address:</span> <span class="last_name">{{ booking.pickup_location}}</span></li>
+                                        
+                                        <li><span class="name_first">Note:</span> <span class="last_name">{{ booking.booking_note}}</span>
+                                        </li>
+                                        
+                                        <li><span class="name_first">Country:</span> <span class="last_name">{{ booking.country}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="tour_details_right_sidebar_wrapper">
+                        <div class="tour_detail_right_sidebar">
+                            <div class="tour_details_right_boxed">
+                                <div class="tour_details_right_box_heading">
+                                    <h3>Booking details</h3>
+                                </div>
+                                <div class="tour_booking_amount_area">
+                                    <ul>
+                                        <li>Booking ID: <span>#{{ booking.booking_number }}</span></li>
+                                        <li>Booking date: <span>{{ booking.created_at }}</span></li>
+                                        <li>Payment method: <span>{{ booking.paymentMode}}</span></li>
+                                        <li>Booking status: <span>{{ booking.status }}</span></li>
+                                    </ul>
+                                    <ul>
+                                        <li>Adult Price x 1 <span>$40,000.00</span></li>
+                                        <li class="remove_coupon_tour">Discount <span>10%</span></li>
+                                        <li>Tax <span>5%</span></li>
+                                    </ul>
+                                    <div class="tour_bokking_subtotal_area">
+                                        <h6 class="remove_coupon_tour">Subtotal <span>$38,000.00</span></h6>
+                                    </div>
+                                    <div class="coupon_add_area">
+                                        <h6><span class="remove_coupon_tour">Remove</span> Coupon code (OFF 5000)
+                                            <span>$5,000.00</span>
+                                        </h6>
+                                    </div>
+                                    <div class="total_subtotal_booking">
+                                        <h6 class="remove_coupon_tour">Total Amount <span>$33,000.00</span> </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    {% include 'frontend/newsletter.html' %}
+   
+    {% include 'frontend/footer.html' %}
+
+    {% endblock main %}
+    

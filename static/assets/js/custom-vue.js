@@ -2,7 +2,7 @@ const app = Vue.createApp({
          data() {
              return {
                BookingDate : "",
-               Adult:  0,
+               Adult:  1,
                Children: 0,
                Infant: 0,
                adult_price : 350 ,
