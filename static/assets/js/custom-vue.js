@@ -187,3 +187,5 @@ const appPrivateCar = Vue.createApp({
 
 appPrivateCar.mount("#canvasPrivate")
 
+
+

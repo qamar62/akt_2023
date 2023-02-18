@@ -5,7 +5,7 @@ from .models import Booking, Obooking, TransferBooking
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['first_name', 'last_name', 'phone','email', 'pickup_location', 'country', 'booking_note','paymentMode']
+        fields = ['first_name', 'last_name', 'phone','email', 'pickup_location', 'country', 'booking_note','paymentMode', 'tour_date']
 
 
 class ObookingForm(forms.ModelForm):

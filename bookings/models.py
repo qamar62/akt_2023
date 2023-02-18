@@ -39,6 +39,7 @@ class Booking(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     tour = models.ForeignKey(Tour, on_delete=models.SET_NULL, blank=True, null=True)
+    tour_date = models.DateField(blank=True, null=True)
     booking_number = models.CharField(max_length=20)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -50,6 +51,9 @@ class Booking(models.Model):
     booking_total = models.FloatField()
     tax = models.FloatField()
     status = models.CharField(max_length=50, choices=STATUS, default='New')
+    no_of_adult= models.CharField(max_length=70)
+    no_of_child= models.CharField(max_length=70)
+    no_of_infant= models.CharField(max_length=70)
     paymentMode = models.CharField(max_length=70)
     ip = models.CharField(blank=True, max_length=20)
     is_booked = models.BooleanField(default=False)
@@ -66,7 +70,7 @@ class Booking(models.Model):
     
     
     def save(self, *args, **kwargs):
-        code = qrcode.make(self.booking_number)
+        code = qrcode.make(self.get_absolute_url)
         qr_offset = Image.new('RGB', (310, 310), 'white')
         qr_offset.paste(code)
         files_name = f'{self.booking_number}qr.png'
@@ -81,7 +85,7 @@ class Booking(models.Model):
             return mark_safe('<img src="%s%s" width="50" height="50" />' % (f'{settings.MEDIA_URL}', self.qr_code))
 
     def __str__(self):
-        return self.first_name
+        return self.booking_number
 
 
 class Obooking(models.Model):

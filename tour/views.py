@@ -75,6 +75,7 @@ def checkout(request, slug):
             data.pickup_location = form.cleaned_data["pickup_location"]
             data.booking_note = form.cleaned_data["booking_note"]
             data.paymentMode = form.cleaned_data["paymentMode"]
+            data.paymentMode = form.cleaned_data["tour_date"]
             data.booking_total = grand_total
             data.tax  = tax
             data.tour= tour
