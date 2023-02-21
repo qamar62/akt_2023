@@ -258,14 +258,16 @@
                                     <a href="{% url 'tour-detail' tour.slug %}"><img src="{{ tour.thumbnail.url }}" alt="img"></a>
                                     <p><i class="fas fa-map-marker-alt"></i>{{ tour.location }}</p>
                                     <div class="discount_tab">
-                                        <span>50%</span>
+                                        <span></span>
                                     </div>
                                 </div>
                                 <div class="theme_two_box_content">
                                     <h4><a href="{% url 'tour-detail' tour.slug %}">{{ tour.name }}</a></h4>
-                                    <p><span class="review_rating">4.8/5 Excellent</span> <span
-                                            class="review_count">(1214
-                                            reviewes)</span></p>
+                                    <p><a href="https://www.tripadvisor.com/AttractionProductReview-g295424-d12980677-Wow_Arabian_Nights_Tours_Desert_Safari_Program_with_BBQ_Dinner-Dubai_Emirate_of_Du.html#REVIEWS">
+                                        <span class="review_rating">4.7/5 Excellent</span> <span
+                                            class="review_count">(1166
+                                            reviewes)</span>
+                                        </a></p>
                                             {% for price in tour.price.all %}
                                     <h3> {{ price.child_price | floatformat:0}}<sub> AED</sub> <span>Price starts from</span></h3>
                                     {%endfor %}
