@@ -120,8 +120,28 @@
     <script src="{% static 'assets/js/custom.js' %}"></script>
     <script src="{% static 'assets/js/add-form.js' %}"></script>
     <script src="{% static 'assets/js/video.js' %}"></script>
+    <!-- sweet alert 2-->
+
     
     
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% if messages %}
+		{% for m in messages %}
+            <script>
+			Swal.fire({
+				
+				title: 'Hi!',
+				text: '{{ m }}',
+				imageUrl: '/static/assets/img/akt_logo_dark.png',
+				imageWidth: 400,
+				
+				imageAlt: 'Arabian nights tours',
+			  })
+			  
+        </script>
+        {% endfor %}
+        {% endif %}
     {% block custom_script %}
     {% endblock custom_script %}
 

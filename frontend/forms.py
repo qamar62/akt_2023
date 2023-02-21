@@ -14,7 +14,8 @@ class ContactusForm(forms.ModelForm):
             'required':'required', 
             'name':'fullname', 
             'type':'text', 
-            'placeholder':'User Name', 
+            'placeholder':'User Name',
+            
             }) 
             
         self.fields['email'].widget.attrs.update({ 
