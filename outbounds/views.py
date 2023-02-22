@@ -90,9 +90,9 @@ def outbound_detail(request, slug):
         else : 
             messages.success(request, "Message not sent fill carefully")
     
+    form=InquiryForm()
     
-    
-    context = {'otour':otour, 'outbounds':outbounds}
+    context = {'otour':otour, 'outbounds':outbounds, 'form':form}
     return render(request, 'outbounds/outbounds-details.html', context)
 
 def ocheckout(request, slug):
