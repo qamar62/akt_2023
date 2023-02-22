@@ -2,7 +2,7 @@ from django import forms
 
 from accounts.models import Contact
 
-
+from captcha.fields import ReCaptchaField
 
 class ContactusForm(forms.ModelForm):
     
@@ -39,12 +39,18 @@ class ContactusForm(forms.ModelForm):
             'type':'text', 
             'placeholder':'Message ', 
             }) 
+        self.fields['captcha'].widget.attrs.update({ 
+            'class': 'form-control  bg_input', 
+            
+             
+            
+            }) 
                    
             
     
     
     
-    
+    captcha=ReCaptchaField()
     class Meta:
         model = Contact
-        fields = ['name', 'phone', 'email', 'message', ]
+        fields = ['name', 'phone', 'email', 'message','captcha']

@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     
     'django_cleanup',
+    'captcha',
    
     
     
@@ -234,3 +235,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # USE_X_FORWARDED_HOST = True
 # SECURE_SSL_REDIRECT = True
+
+
+RECAPTCHA_PUBLIC_KEY = '6Lfk3qIkAAAAAF_Shuq2k9t84SvehkMJxKqhI7Am'
+RECAPTCHA_PRIVATE_KEY = '6Lfk3qIkAAAAAPZes7027mtu-xa2YWWIK7PHgClY'
