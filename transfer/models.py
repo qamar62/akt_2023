@@ -14,6 +14,9 @@ class DropoffLocation(models.Model):
 
     def __str__(self):
         return self.location
+    
+
+
 class Transfer(models.Model):
     
     name = models.CharField(max_length=200)
@@ -36,3 +39,9 @@ class Transfer(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+        
+        
+class Price(models.Model):
+    transfer = models.ForeignKey(Transfer, on_delete=models.CASCADE, related_name='price')
+    oneway_price = models.CharField(max_length=50, null=True, blank=True)
+    return_price = models.CharField(max_length=50, null=True, blank=True)
