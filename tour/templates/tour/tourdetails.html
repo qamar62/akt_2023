@@ -155,14 +155,14 @@
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion_flex_area">
                                     <div class="accordion_left_side">
-                                        <h5>{{itin.title|slice:6}}</h5>
+                                        <h5>{{itin.time }}</h5>
                                     </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="headingOne">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseOne{{itin.id}}" aria-expanded="false"
                                                 aria-controls="collapseOne">
-                                                {{itin.title|slice:'6:'}}
+                                                {{itin.title}}
                                             </button>
                                         </h2>
                                         <div id="collapseOne{{itin.id}}" class="accordion-collapse collapse show"
