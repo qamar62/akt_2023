@@ -38,7 +38,7 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('api/rest-auth/', include('rest_auth.urls')),
     path('cart/', include('cart.urls')),
-    
+    path('visa/', include('visa.urls')),
     path('tours/', include('tour.urls')),
     path('bookings/', include('bookings.urls')),
     path('hotel/', include('hotel.urls')),
