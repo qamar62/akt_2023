@@ -52,7 +52,7 @@ def outbounds(request):
     
             
     
-    context = {'outbounds_filter':paged_tours, 'prices':prices, 'outbounds':outbounds_tours, "city_count":city_count}
+    context = {'outbounds_filter':outbounds_filter,'paged_tours': paged_tours, 'prices':prices, 'outbounds':outbounds_tours, "city_count":city_count}
     return render(request, 'outbounds/outbounds.html', context)
 
 

@@ -43,7 +43,7 @@ class Location(models.Model):
         return self.city
 
 class Otour(models.Model):
-    
+    BADGE_CHOICES = (('Popular', 'Popular'),('Top Rated', 'Top Rated'),('Eid Special', 'Eid Special'),('Christmas', 'Christmas'),('New Year', 'New Year'),)
     name = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     no_of_days = models.IntegerField(default=0)
@@ -56,7 +56,7 @@ class Otour(models.Model):
     slug = models.SlugField(max_length=150, default='null', unique=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)
-    badge = models.CharField(max_length=200, choices=(('Popular', 'Popular'),('Top Rated', 'Top Rated'),('Eid Special', 'Eid Special'),('Christmas', 'Christmas'),('New Year', 'New Year'),))
+    badge = models.CharField(max_length=200, choices=BADGE_CHOICES)
     seats = models.IntegerField(default=0)
     long = models.FloatField(  blank=True, null=True, help_text='Longitude ')
     lat = models.FloatField(  blank=True, null=True, help_text='Latitude')
