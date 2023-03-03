@@ -192,7 +192,7 @@
                         {% endfor  %}
                     </div>
                     <div class="tour_details_boxed">
-                        <h3 class="heading_theme">Included</h3>
+                        <h3 class="heading_theme">Includes</h3>
                         <div class="tour_details_boxed_inner ">
                             
                             <ul>
@@ -203,7 +203,7 @@
                             </ul>
                         </div>
                         <div class="tour_details_boxed_inner ">
-                            <h3 class="heading_theme">Excluded</h3>
+                            <h3 class="heading_theme">Does Not Include</h3>
                             <ul>
                                 {% for exclude in tour.excludes.all %}
                                 <li><i class="fas fa-circle"></i>{{ exclude.body|safe}}</li>

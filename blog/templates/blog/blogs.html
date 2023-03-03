@@ -45,13 +45,13 @@
                                 </div>
                             </div>
                             <div class="news_item_content news_two_content">
-                                <h2>
+                                <h3>
                                     <a href="{% url 'blog-detail' post.id %}">
                                         {{post.title}}
                                     </a>
-                                </h2>
+                                </h3>
                                 <p>
-                                    {{ post.body | safe | truncatewords:10 }} <a href="news-details.html"> Read more...</a>
+                                    {{ post.body | safe | truncatewords:10 }} <a href="{% url 'blog-detail' post.id %}"> Read more...</a>
                                 </p>
                             </div>
                         </div>
