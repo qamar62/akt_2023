@@ -161,7 +161,7 @@ class Itinerary(models.Model):
 class Excl(models.Model):
     
     tour  = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='excludes')
-    name = models.CharField(max_length=250)
+    body   = RichTextField(blank=True, null=True)
     icon = models.ImageField(null=True, blank=True)
    
     
@@ -172,7 +172,7 @@ class Excl(models.Model):
 
 class Inclusions(models.Model):
     tour  = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name='includes')
-    name = models.CharField(max_length=250)
+    body   = RichTextField(blank=True, null=True)
     icon = models.ImageField(null=True, blank=True)
 
     
