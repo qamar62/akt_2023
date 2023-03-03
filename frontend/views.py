@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ContactusForm
-from frontend.models import Faq, FaqServices, HappyCutomer, Newsletter
+from .models import Faq, FaqServices, HappyCutomer, Newsletter
 from tour.models import Tour , Promotion
 from accounts.models import  Contact
 from django.contrib import messages

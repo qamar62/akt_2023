@@ -48,9 +48,12 @@
                                 <h5><i class="fas fa-map-marker-alt"></i> </h5>
                             </div>
                             <div class="tour_details_top_heading_right">
-                                <h4>Excellent</h4>
-                                <h6>4.8/5</h6>
-                                <p>(1214 reviewes)</p>
+                                <h4>PRICE <sup>AED </sup></h4>
+                                {% for price in otour.price.all %}
+                                <h6>{{ price.price }}- Adult</h6>
+                                
+                                <hr>
+                                {% endfor %}
                             </div>
                         </div>
                         

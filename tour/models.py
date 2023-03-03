@@ -6,6 +6,8 @@ from django.urls import reverse
 from accounts.models import Customer
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from calendar import monthrange
+
 # Create your models here.
 
 
@@ -99,6 +101,21 @@ class Price(models.Model):
     def __str__(self):
         return self.tour.name
 
+class TourAvailability(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    month = models.DateField()
+    available_dates = models.CharField(max_length=100, blank=True, help_text="system will assign automatically")
+    unavailable_dates = models.CharField(max_length=100, blank=True)
+
+    def save(self, *args, **kwargs):
+        days_in_month = monthrange(self.month.year, self.month.month)[1]
+        all_dates = set(range(1, days_in_month+1))
+        unavailable_dates = set(map(int, str(self.unavailable_dates).split(','))) if self.unavailable_dates is not None else set()
+        available_dates = sorted(list(all_dates - unavailable_dates))
+        self.available_dates = ",".join([str(day) for day in available_dates])
+        super(TourAvailability, self).save(*args, **kwargs)
+        
+        
 
 class Extra(models.Model):
     

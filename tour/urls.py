@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     
     path("activity/<str:slug>/", views.tourDetail, name="tour-detail"),
+    path("availability/", views.availability, name="tour-availability"),
     
     path("grid/", views.toursGrid, name="all-tours-grid"),
     path('itinerary/<str:slug>/checkout/', views.checkout, name="checkout"),

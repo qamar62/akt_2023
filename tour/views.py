@@ -1,15 +1,16 @@
+import calendar
 from http.client import HTTPResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import datetime
 import time
 
 from . filters import TourCatFilter
-from . models import Tour, TourService, TourGallery, ReviewRating
-from . forms import ReviewForm
+from . models import Tour, TourAvailability, TourService, TourGallery, ReviewRating
+from . forms import  AvailabilityForm, ReviewForm
 # Create your views here.
 
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from bookings.forms import BookingForm
 from bookings.models import  Booking
 from django.contrib import messages
@@ -19,6 +20,8 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from bookings.twilio import client
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
+import json
 
 
 
@@ -208,5 +211,26 @@ def toursGrid(request):
 
 
 
+def tour_availability(request, tour_id, year=2023, month=3):
+    tour_availability = TourAvailability.objects.get(tour_id=tour_id, month__year=year, month__month=month)
+    context = {
+        'tour_availability': tour_availability
+    }
+    return render(request, 'tour/tour_availability.html', context)
 
 
+
+
+def availability(request):
+    if request.method == 'POST':
+        form = AvailabilityForm(request.POST)
+        if form.is_valid():
+            month_data = form.clean_month()
+            month_data_str = json.dumps(month_data)
+            return render(request, 'tour/availability.html', {'form': form, 'month_data': month_data_str})
+    else:
+        form = AvailabilityForm()
+
+    context = {'form': form,}
+
+    return render(request, 'tour/availability.html', context)

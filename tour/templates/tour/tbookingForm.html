@@ -64,8 +64,11 @@
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <input name="pickup_location" type="text" class="form-control bg_input"
+                                                <input name="pickup_location" type="text" id="hotel" class="form-control bg_input"
                                                     placeholder="Pickup Location with room no. or appt*">
+                                                    
+                                                    <input type="hidden" id="pickup_lat" name="pickup_lat">
+                                                    <input type="hidden" id="pickup_lng" name="pickup_lng">
                                             </div>
                                         </div>
                                         
@@ -257,6 +260,34 @@
     <script src="https://unpkg.com/vue@next"></script>
    
     <script src="{% static 'assets/js/custom-vue.js' %}"></script>
+
+    <!-- google places api-->
+    <script>
+        function initAutocomplete() {
+          const hotelInput = document.getElementById('pickup_location');
+          const pickupLatInput = document.getElementById('pickup_lat');
+          const pickupLngInput = document.getElementById('pickup_lng');
+      
+          const autocomplete = new google.maps.places.Autocomplete(hotelInput);
+      
+          autocomplete.addListener('place_changed', () => {
+            const place = autocomplete.getPlace();
+      
+            if (!place.geometry) {
+              console.error('No location data available for this place.');
+              return;
+            }
+      
+            pickupLatInput.value = place.geometry.location.lat();
+            pickupLngInput.value = place.geometry.location.lng();
+          });
+        }
+      </script>
+      
+      <!-- include Google Maps API script -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
+
+
     {% endblock %}
 
     {% endblock main %}

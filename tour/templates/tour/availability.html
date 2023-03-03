@@ -1,0 +1,53 @@
+
+{% extends 'frontend/base.html' %}
+    
+{% load custom_filters %}
+
+
+
+
+
+{% block main %}
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+  {% if month_data %}
+
+    <h2>{{ month_data.year }}/{{ month_data.month }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+          <th>Sun</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for week in month_data.dates|slice:":7"|batch:7 %}
+          <tr>
+            {% for day in week %}
+              {% if day.available %}
+                <td>{{ day.day }}</td>
+              {% else %}
+                <td class="unavailable">{{ day.day }}</td>
+              {% endif %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+        
+      </tbody>
+    </table>
+  {% endif %}
+
+        
+         
+ {% endblock %}
+    

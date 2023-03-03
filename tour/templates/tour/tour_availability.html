@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        
+    <!-- Include FullCalendar assets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+         <!-- Define JSON endpoint for calendar data -->
+<script>
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+            events: '{% url "calendar_data" %}',
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            }
+        });
+    });
+</script>
+
+    </head>
+
+   
+
+
+<!-- Render calendar -->
+
+    <body>
+        <div id="calendar">
+            
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>
+
+

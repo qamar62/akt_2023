@@ -3,7 +3,26 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import *
+from django.utils.html import format_html
 
+
+class TourAvailabilityAdmin(admin.ModelAdmin):
+    list_display = ('tour', 'get_month', 'colored_available_dates','colored_unavailable_dates' )
+
+    
+    def get_month(self, obj):
+        return obj.month.strftime('%B')
+    get_month.short_description = 'Month'
+    
+    def colored_available_dates(self, obj):
+        return format_html('<span style="color: green">{}</span>', obj.available_dates)
+    colored_available_dates.short_description = 'Available Dates'
+
+    def colored_unavailable_dates(self, obj):
+        return format_html('<span style="color: red">{}</span>', obj.unavailable_dates)
+    colored_unavailable_dates.short_description = 'Unavailable Dates'
+
+admin.site.register(TourAvailability, TourAvailabilityAdmin)
 
 
 
