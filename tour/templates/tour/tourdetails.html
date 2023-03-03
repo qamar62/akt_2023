@@ -218,7 +218,7 @@
                             
                             <ul>
                                 {% for include in tour.includes.all %}
-                                <li><i class="fas fa-circle"></i>{{ include.name}}</li>
+                                <li><i class="fas fa-circle"></i>{{ include.body|safe }}</li>
                                 {% endfor %}
                                 
                             </ul>
@@ -227,7 +227,7 @@
                             <h3 class="heading_theme">Excluded</h3>
                             <ul>
                                 {% for exclude in tour.excludes.all %}
-                                <li><i class="fas fa-circle"></i>{{ exclude.name}}</li>
+                                <li><i class="fas fa-circle"></i>{{ exclude.body|safe}}</li>
                                 {% endfor %}
                                 
                             </ul>
