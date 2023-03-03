@@ -38,8 +38,8 @@ class ExclusionTabularInline(admin.StackedInline):
 class ItineraryTabularInline(admin.TabularInline):
     model =  Itinerary
     extra = 0
-class TourServiceTabularInline(admin.TabularInline):
-    model =  TourService
+class TourPriceTabularInline(admin.TabularInline):
+    model =  Price
    
     extra = 0
 
@@ -50,7 +50,7 @@ class TourAdmin(admin.ModelAdmin):
     list_display = ["name"]
     readonly_fields = ["slug"]
     list_filter = ['name']
-    inlines = [InclusionTabularInline, ExclusionTabularInline, ItineraryTabularInline, TourServiceTabularInline]
+    inlines = [InclusionTabularInline, ExclusionTabularInline, ItineraryTabularInline, TourPriceTabularInline]
     date_hierarchy = 'date_created'
 
 

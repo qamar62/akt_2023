@@ -5,7 +5,7 @@ import datetime
 import time
 
 from . filters import TourCatFilter
-from . models import Tour, TourAvailability, TourService, TourGallery, ReviewRating
+from . models import Tour, TourAvailability, TourGallery, ReviewRating
 from . forms import  AvailabilityForm, ReviewForm
 # Create your views here.
 

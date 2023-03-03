@@ -91,7 +91,10 @@ class Tour(models.Model):
         return reverse("tour-detail", kwargs={"slug": self.slug})
 
 class Price(models.Model):
+    SERVICE_CHOICE = (('Private', 'Private'), ('Sharing', 'Sharing'))
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name="price")
+    service_type = models.TextField(choices=SERVICE_CHOICE, max_length=100, null=True, blank=True)
+    base_Price = models.FloatField()
     adult_price = models.FloatField()
     child_price = models.FloatField()
     infant_price = models.FloatField()
@@ -99,7 +102,7 @@ class Price(models.Model):
     
     
     def __str__(self):
-        return self.tour.name
+        return f'{self.tour.name} - {self.service_type}'
 
 class TourAvailability(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
@@ -181,17 +184,7 @@ class Inclusions(models.Model):
     
     class Meta: 
         verbose_name = "Inclusion"
-        verbose_name_plural = "Inclusions"
-
-class TourService(models.Model):
-    tour = models.ForeignKey(Tour, related_name="tour_service", on_delete=models.CASCADE)
-    service_name =  models.CharField(max_length=50, unique=True)
-    price = models.IntegerField()
-    allowed_maximum = models.IntegerField()
-    date_created = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.service_name   
+        verbose_name_plural = "Inclusions"  
 
 
 class Promotion(models.Model):
