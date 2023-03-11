@@ -33,6 +33,7 @@ class Category(models.Model):
 
 
 class Location(models.Model):
+    tour = models.ForeignKey('Tour', related_name='location', on_delete=models.CASCADE)
     country = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=150, null=True, blank=True)
 
@@ -98,8 +99,19 @@ class Price(models.Model):
     adult_price = models.FloatField()
     child_price = models.FloatField()
     infant_price = models.FloatField()
+    discount = models.PositiveSmallIntegerField(choices=[(x, x) for x in range(5, 101, 5)], null=True, blank=True)
       
-    
+    def get_discounted_price(self, price):
+        if self.discount and price == self.base_Price:
+            return price - (price * (self.discount / 100))
+        else:
+            return price
+
+    def get_discounted_adult_price(self):
+        return self.get_discounted_price(self.adult_price)
+
+    def get_discounted_child_price(self):
+        return self.get_discounted_price(self.child_price)
     
     def __str__(self):
         return f'{self.tour.name} - {self.service_type}'
@@ -113,7 +125,7 @@ class TourAvailability(models.Model):
     def save(self, *args, **kwargs):
         days_in_month = monthrange(self.month.year, self.month.month)[1]
         all_dates = set(range(1, days_in_month+1))
-        unavailable_dates = set(map(int, str(self.unavailable_dates).split(','))) if self.unavailable_dates is not None else set()
+        unavailable_dates = set(map(int, str(self.unavailable_dates).strip().split(','))) if self.unavailable_dates is not None else set()
         available_dates = sorted(list(all_dates - unavailable_dates))
         self.available_dates = ",".join([str(day) for day in available_dates])
         super(TourAvailability, self).save(*args, **kwargs)

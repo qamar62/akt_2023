@@ -3,16 +3,18 @@ from http.client import HTTPResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import datetime
 import time
-
+from django.views.decorators.csrf import csrf_exempt
+import requests
 from . filters import TourCatFilter
 from . models import Tour, TourAvailability, TourGallery, ReviewRating
 from . forms import  AvailabilityForm, ReviewForm
 # Create your views here.
 
-
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+import xml.etree.ElementTree as ET
+import xmltodict
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect, JsonResponse
 from bookings.forms import BookingForm
-from bookings.models import  Booking
+from bookings.models import  Booking, Payment
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage
@@ -60,7 +62,7 @@ def checkout(request, slug):
     
     current_user = request.user.customer
     tax = 0
-    grand_total = 0
+    grand_total = 150
     total = 0
     
     if request.method == 'POST':
@@ -78,7 +80,11 @@ def checkout(request, slug):
             data.pickup_location = form.cleaned_data["pickup_location"]
             data.booking_note = form.cleaned_data["booking_note"]
             data.paymentMode = form.cleaned_data["paymentMode"]
-            data.paymentMode = form.cleaned_data["tour_date"]
+            data.tour_date = form.cleaned_data["tour_date"]
+            if data.tour_date:
+                data.tour_date = datetime.strptime(data.tour_date, '%d-%m-%Y').date()
+            else:
+                data.tour_date = None
             data.booking_total = grand_total
             data.tax  = tax
             data.tour= tour
@@ -141,23 +147,143 @@ def checkout(request, slug):
     context = {'tour':tour}
     return render (request, 'tour/tbookingForm.html', context)
 
+def payment_view(request):
+    current_user = request.user.customer
+    booking = Booking.objects.get(user=current_user, is_booked=False)
+    booking_number = booking.booking_number
+    customer_name = request.user.customer.name
+    customer_email = request.user.customer.email
+    service_name = booking.tour.name
+    amount = booking.booking_total
+    # 3G Direct Pay API endpoint
+    url = 'https://secure.3gdirectpay.com/API/v6/'
+
+    # XML request to create token for payment
+    xml = '''<?xml version="1.0" encoding="utf-8"?>
+    <API3G>
+    <CompanyToken>8D3DA73D-9D7F-4E09-96D4-3D44E7A83EA3</CompanyToken>
+    <Request>createToken</Request>
+    <Transaction>
+    <PaymentAmount>0</PaymentAmount>
+    <PaymentCurrency>AED</PaymentCurrency>
+    <CompanyRef>DNPEPU</CompanyRef>
+    <RedirectURL>https://arabianknightstours.com/callback/</RedirectURL>
+    <BackURL></BackURL>
+    <CompanyRefUnique>0</CompanyRefUnique>
+    <PTL>1</PTL>
+    </Transaction>
+    <Services>
+    <Service>
+    <ServiceType>5525</ServiceType>
+    <ServiceDescription>Desert Safari</ServiceDescription>
+    <ServiceDate>2013/12/20 19:00</ServiceDate>
+    </Service>
+    </Services>
+    </API3G>'''
+    
+    
+    # parse the XML string
+    root = ET.fromstring(xml)
+
+    # find the PaymentAmount element and update its value
+    payment_amount = root.find('Transaction/PaymentAmount')
+    payment_amount.text = str(amount)  # set the new value here
+    
+    serviceDescription = root.find('Services/Service/ServiceDescription')
+    serviceDescription.text = service_name
+    # serialize the updated XML
+    updated_xml = ET.tostring(root).decode('utf-8')
+    
+    print(updated_xml)
+   
+    
+    # Headers for the XML request
+    headers = {'Content-Type': 'application/xml'}
+
+    # Send the XML request to the 3G Direct Pay API endpoint
+    response = requests.post(url, data=updated_xml, headers=headers)
+    
+    # Parse the response from the API
+    response_xml = response.content.decode('utf-8')
+    print(response_xml)
+    response_dict = xmltodict.parse(response_xml.encode('utf-8'))
+    
+    
+    
+
+    # Check if the payment request was successful
+    if response_dict['API3G']['Result'] == '000':
+        # Get the payment URL
+        TransToken = response_dict['API3G']['TransToken']
+        transaction_id = response_dict['API3G']['TransRef']
+        print(transaction_id)
+        
+        
+        print(TransToken)
+        # Redirect to the payment URL
+        payment_url = f'https://secure.3gdirectpay.com/payv2.php?ID={TransToken}'
+        
+        # Create a new payment object and save it to the database
+        payment = Payment(
+            booking_number=booking_number,
+            user=request.user.customer,
+            
+            amount=amount,
+            payment_id=transaction_id,
+            status='pending',
+        )
+        payment.save()
+        
+        return redirect(payment_url)
+    else:
+        # Payment request was not successful, handle the error
+        error_message = response_dict['API3G']['ResultExplanation']
+        return HttpResponse(error_message)
+   
+@csrf_exempt 
+def handle_callback(request):
+    if request.method == 'POST':
+        # Parse the callback data and extract the transaction ID and status
+        callback_data = json.loads(request.body.decode('utf-8'))
+        transaction_id = callback_data['TransactionID']
+        status = callback_data['Status']
+
+        # Find the corresponding payment in the database
+        try:
+            payment = Payment.objects.get(transaction_id=transaction_id)
+        except Payment.DoesNotExist:
+            return JsonResponse({'error': 'Payment not found'}, status=404)
+
+        # Update the payment status based on the callback data
+        payment.status = status
+        payment.save()
+
+        # Return a success response
+        return HttpResponse('Callback handled successfully')
+    else:
+        # Handle invalid requests
+        return HttpResponseBadRequest()
+    
 
 def confirmation(request):
     
     context = {}
-    return redirect(request, 'tour/booking-confirmation.html', context)
+    return redirect(request, 'tour/booking-paid-confirmation.html', context)
 
 
 
 
 def tourDetail(request, slug):
     top_tours = Tour.objects.filter(available=True)[:4]
-    tour_service = TourService.objects.all()
+    
     tour = Tour.objects.get(slug=slug)
-    for price in tour.price.all() :
-        adult_price = price.adult_price 
-        child_price = price.child_price 
-        infant_price = price.infant_price 
+    private_tour_price = None
+    sharing_tour_price = None
+    for price in tour.price.all():
+        if price.service_type == 'Private':
+            private_tour_price = price
+        else:
+            sharing_tour_price =  price
    
     if request.method == 'POST':
         quantity = request.POST.get('quantity')
@@ -167,7 +293,7 @@ def tourDetail(request, slug):
     tour_gallery = TourGallery.objects.all()
     reviews = ReviewRating.objects.all()
     
-    context = {'tour':tour, 'tour_service':tour_service, 'tour_gallery':tour_gallery, "reviews":reviews, "adult_price":adult_price, "child_price":child_price , "top_tours":top_tours}
+    context = {'tour':tour, 'tour_gallery':tour_gallery, "reviews":reviews, "private_tour_price":private_tour_price, "sharing_tour_price":sharing_tour_price , "top_tours":top_tours}
     return render( request, "tour/tourdetails.html", context )
 
 
@@ -221,16 +347,9 @@ def tour_availability(request, tour_id, year=2023, month=3):
 
 
 
-def availability(request):
-    if request.method == 'POST':
-        form = AvailabilityForm(request.POST)
-        if form.is_valid():
-            month_data = form.clean_month()
-            month_data_str = json.dumps(month_data)
-            return render(request, 'tour/availability.html', {'form': form, 'month_data': month_data_str})
-    else:
-        form = AvailabilityForm()
-
-    context = {'form': form,}
-
+def availability(request, tour_id, year, month):
+    
+    tour_availability = TourAvailability.objects.filter(tour_id=tour_id, month__year=year, month__month=month)
+    
+    context = {'tour_availability': tour_availability}
     return render(request, 'tour/availability.html', context)

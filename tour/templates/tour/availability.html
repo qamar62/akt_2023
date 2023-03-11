@@ -1,53 +1,79 @@
-
 {% extends 'frontend/base.html' %}
-    
 {% load custom_filters %}
 
+{% load static %}
+
+
+{% block custom_css %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
 
 
 
+{% endblock %}
 
 {% block main %}
 
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
-  {% if month_data %}
 
-    <h2>{{ month_data.year }}/{{ month_data.month }}</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Mon</th>
-          <th>Tue</th>
-          <th>Wed</th>
-          <th>Thu</th>
-          <th>Fri</th>
-          <th>Sat</th>
-          <th>Sun</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for week in month_data.dates|slice:":7"|batch:7 %}
-          <tr>
-            {% for day in week %}
-              {% if day.available %}
-                <td>{{ day.day }}</td>
-              {% else %}
-                <td class="unavailable">{{ day.day }}</td>
-              {% endif %}
-            {% endfor %}
-          </tr>
-        {% endfor %}
-        
-      </tbody>
-    </table>
-  {% endif %}
+    <div id="calendar"></div>
 
-        
-         
- {% endblock %}
+
+
+
+
+
+
     
+
+     
+
+{% block custom_script %}
+
+    <!-- At the end of the body section -->
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  
+
+    <script>
+        $(document).ready(function() {
+            var events = [
+                {% for availability in tour_availability %}
+                     {% for day in availability.available_dates|split_string:',' %}
+                        {
+                            title: "Available",
+                            start: "{{ availability.month|date:'Y-m-' }}{{ day }}",
+                            color: "{% if day %}#7ABD7E{% endif %}"
+                        },
+                    {% endfor %}
+                    {% for day in availability.unavailable_dates|split_string:',' %}
+                        {
+                            title: "Unavailable",
+                            start: "{{ availability.month|date:'Y-m-' }}{{ day }}",
+                            color: "{% if day %}#FF6961{% endif %}"
+                        },
+                    {% endfor %}
+                {% endfor %}
+            ];
+
+            $('#calendar').fullCalendar({
+                events: events,
+                
+            });
+        });
+        
+        
+    </script>
+
+
+
+{% endblock %}
+
+    {% endblock main %}
+    
+

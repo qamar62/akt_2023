@@ -11,7 +11,7 @@ class TourAvailabilityAdmin(admin.ModelAdmin):
 
     
     def get_month(self, obj):
-        return obj.month.strftime('%B')
+        return obj.month
     get_month.short_description = 'Month'
     
     def colored_available_dates(self, obj):
@@ -68,8 +68,22 @@ class PriceAdmin(admin.ModelAdmin):
     
     model = Price
     search_fields = ['tour']
-    list_display = ["tour", "adult_price", "child_price", "infant_price"]
+    list_display = ["tour","display_discount","service_type","base_Price", "adult_price", "child_price", "infant_price",'discounted_price']
 
+    def display_discount(self, obj):
+        if obj.discount:
+            return f"{obj.discount}%"
+        else:
+            return "-"
+    
+    display_discount.short_description = "Discount"
+    
+    def discounted_price(self, obj):
+        return obj.get_discounted_price(obj.base_Price)
+    
+    discounted_price.short_description = "Discounted Price" 
+     
+            
 admin.site.register(Extra, ExtraAdmin)
 
 admin.site.register(Itinerary)

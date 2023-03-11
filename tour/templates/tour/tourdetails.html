@@ -77,7 +77,7 @@
                             </div>
                             <div class="tour_details_top_bottom_text">
                                 <h5>Group size</h5>
-                                <p>50 people</p>
+                                <p>6 People/Car</p>
                             </div>
                         </div>
                         <div class="toru_details_top_bottom_item">
@@ -86,7 +86,9 @@
                             </div>
                             <div class="tour_details_top_bottom_text">
                                 <h5>Location</h5>
-                                <p>{{tour.location }}</p>
+                                {% for city in tour.location.all %}
+                                <p>{{city.city }}</p>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -238,14 +240,20 @@
                                     
                                 </ul>
                             </div>
+                           
                             <div class="tour_package_details_bar_price">
                                 <h5>Price</h5>
                                 <div class="tour_package_bar_price">
                                     <h6><del>AED 2100</del></h6>
-                                    <h3>AED 1650 <sub>/Per Car</sub> </h3>
+                                    {% if private_tour_price %}
+                                       
+                                    
+                                    <h3>AED {{ private_tour_price.base_Price|floatformat:0 }} <sub>/Per Car</sub> </h3>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="tour_select_offer_bar_bottom">
                             <button class="btn btn_theme btn_md w-100" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasRightPrivate" aria-controls="offcanvasRightPrivate">Select
@@ -269,19 +277,19 @@
                                 </ul>
                             </div>
                             <div class="tour_package_details_bar_price">
-                                {% for price in tour.price.all %}
+                                {% if private_tour_price %}
                                 <h5>Price</h5>
                                 <div class="tour_package_bar_price">
-                                    <h6><del>AED {{ price.adult_price|floatformat:0 }}</del></h6>
-                                    <h3>AED {{ price.adult_price|floatformat:0 }} <sub>/per Adult</sub> </h3>
+                                    <h6><del>AED {{ sharing_tour_price.adult_price|floatformat:0 }} </.del></h6>
+                                    <h3>AED {{ sharing_tour_price.adult_price|floatformat:0 }} <sub>/per Adult</sub> </h3>
                                     
                                 </div>
                                 <div class="tour_package_bar_price">
                                     <h6><del>AED 250</del></h6>
-                                    <h3>AED {{ price.child_price|floatformat:0 }} <sub>/per Child</sub> </h3>
+                                    <h3>AED {{ sharing_tour_price.child_price|floatformat:0 }} <sub>/per Child</sub> </h3>
                                     
                                 </div>
-                                {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="tour_select_offer_bar_bottom">
@@ -664,7 +672,7 @@
                  
              </div>
             
-
+             
 
              
          </div>

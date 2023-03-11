@@ -17,9 +17,10 @@ from django.utils.html import format_html
 
 class Payment(models.Model):
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    booking_number = models.CharField(max_length=20, blank=True, null=True)
     payment_id = models.CharField(max_length=100)
     payment_method= models.CharField(max_length=100)
-    amount_paid = models.CharField(max_length=100)
+    amount = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     created_at = models.DateField(auto_now_add=True)
 

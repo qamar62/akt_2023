@@ -12,3 +12,8 @@ def batch(sequence, count):
         result.append(sequence[:count])
         sequence = sequence[count:]
     return result
+
+@register.filter
+def split_string(value, delimiter=","):
+    return value.split(delimiter)
+
