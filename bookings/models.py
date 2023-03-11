@@ -51,7 +51,7 @@ class Booking(models.Model):
     booking_note = models.CharField(max_length=100, blank=True)
     booking_total = models.FloatField()
     tax = models.FloatField()
-    status = models.CharField(max_length=50, choices=STATUS, default='New')
+    status = models.CharField(max_length=50, choices=STATUS, default='Payment Pending')
     no_of_adult= models.CharField(max_length=70)
     no_of_child= models.CharField(max_length=70)
     no_of_infant= models.CharField(max_length=70)
