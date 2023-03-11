@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from bookings.forms import TransferForm
 
-from bookings.models import TransferBooking
+
+
 from . models import Transfer
 import datetime
 from django.contrib import messages

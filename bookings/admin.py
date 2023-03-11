@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import BookOtour, Obooking, Payment, Booking, BookTour, TransferBooking, BookOtour
+from . models import BookOtour, Obooking, Payment, Booking, BookTour, BookOtour
 from import_export.admin import ImportExportModelAdmin
 # Register your models here.
 
@@ -37,19 +37,13 @@ class ObookingAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     date_hierarchy = 'created_at'
 
 
-class TransferBookingAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    model = Obooking
-    search_fields = ['fullname']
-    list_display = ["created_at","booking_number","fullname", 'phone', 'email','is_booked']
-    # readonly_fields = ["slug"]
-    
-    list_per_page = 20
+
     
 
 
 admin.site.register(Payment)
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Obooking, ObookingAdmin)
-admin.site.register(TransferBooking, TransferBookingAdmin)
+
 admin.site.register(BookTour)
 admin.site.register(BookOtour)

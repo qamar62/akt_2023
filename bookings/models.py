@@ -181,38 +181,3 @@ class BookOtour(models.Model):
 
     def __str__(self):
         return self.tour.name
-    
-class TransferBooking(models.Model):
-    STATUS = (
-        ('New', 'New'),
-        ('Payment Pending', 'Payment Pending'),
-        ('Booked', 'Booked'),
-        ('Reconfirmed', 'Reconfirmed'),
-        ('Cancelled', 'Cancelled'),
-    )
-   
-    user = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    
-    booking_number = models.CharField(max_length=20)
-    fullname = models.CharField(max_length=50)
-    service_date = models.DateField(null=True, blank=True)
-    service_time = models.TimeField(null=True, blank=True)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField(max_length=50)
-    pickup_location = models.CharField(max_length=50)
-    dropoff_location = models.CharField(max_length=100, blank=True)
-    booking_total = models.FloatField(null=True, blank=True)
-    tax = models.FloatField(null=True, blank=True)
-    status = models.CharField(max_length=50, choices=STATUS, default='New')
-    paymentMode = models.CharField(max_length=70,null=True, blank=True)
-    ip = models.CharField(blank=True, max_length=20)
-    is_booked = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    
-    
-
-
-    def __str__(self):
-        return self.first_name
