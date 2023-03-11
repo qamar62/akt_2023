@@ -149,12 +149,13 @@ def checkout(request, slug):
 
 def payment_view(request):
     current_user = request.user.customer
-    booking = Booking.objects.get(user=current_user, is_booked=False)
-    booking_number = booking.booking_number
-    customer_name = request.user.customer.name
-    customer_email = request.user.customer.email
-    service_name = booking.tour.name
-    amount = booking.booking_total
+    bookings = Booking.objects.filter(user=current_user, is_booked=False)
+    for booking in bookings:
+        booking_number = booking.booking_number
+        customer_name = request.user.customer.name
+        customer_email = request.user.customer.email
+        service_name = booking.tour.name
+        amount = booking.booking_total
     # 3G Direct Pay API endpoint
     url = 'https://secure.3gdirectpay.com/API/v6/'
 
@@ -257,6 +258,13 @@ def handle_callback(request):
         # Update the payment status based on the callback data
         payment.status = status
         payment.save()
+        current_user = request.user.customer
+        booking = Booking.objects.get(user=current_user, is_booked=False)
+        if booking:
+            # Update the booking status to "Paid"
+            booking.status = "Booked"
+            booking.is_booked = True
+            booking.save()
 
         # Return a success response
         return HttpResponse('Callback handled successfully')
