@@ -25,7 +25,7 @@ class Payment(models.Model):
     created_at = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return self.payment_id
+        return f'{self.payment_id} for {self.user}'
 
 
 class Booking(models.Model):
