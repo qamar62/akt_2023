@@ -93,14 +93,16 @@
                                             class="review_count">(1166
                                             reviewes)</span>
                                         </a></p>
-                                        {% if sharing_tour_price %}
-                                        
-                                            <h3>{{ sharing_tour_price.child_price|floatformat:0 }}<sub> AED</sub> <span>Price starts from</span></h3>
+                                        {% if tour.price.all %}
+                                         {% for price in tour.price.all %}
+                                             {% if price.service_type == 'Private' %}
+                                            <h3> {{ price.adult_price|floatformat:0 }}<sub> AED</sub> <span>Price starts from</span></h3>
                                        
+                                            {% elif price.service_type == 'Sharing' %}
+                                            <p>Sharing Price: {{ price.adult_price }}</p>
                                             {% endif %}
-                                        {% if private_tour_price %}
-                                        <p>Private Car: {{ private_tour_price.base_Price|floatformat:0  }}</p>
-                                        {% endif %}
+                                            {% endfor %}
+                                            {% endif %}
                                 </div>
                             </div>
                         </div>
