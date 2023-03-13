@@ -94,7 +94,7 @@ class Tour(models.Model):
 class Price(models.Model):
     SERVICE_CHOICE = (('Private', 'Private'), ('Sharing', 'Sharing'))
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE, related_name="price")
-    service_type = models.TextField(choices=SERVICE_CHOICE, max_length=100, null=True, blank=True)
+    service_type = models.CharField(choices=SERVICE_CHOICE, max_length=100, null=True, blank=True)
     base_Price = models.FloatField()
     adult_price = models.FloatField()
     child_price = models.FloatField()

@@ -337,9 +337,16 @@ def toursGrid(request):
     tour_count =  tours.count()
 
     catfilter =  TourCatFilter()
+    private_tour_price = None
+    sharing_tour_price = None
+    for tour in tours:
+        for price in tour.price.all():
+            if price.service_type == 'Private':
+                private_tour_price = price
+            else:
+                sharing_tour_price =  price
 
-
-    context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter, 'all_tours':tours}
+    context = {'tours': paged_tours,  'tour_count':tour_count, 'catfilter':catfilter, 'all_tours':tours, "private_tour_price":private_tour_price, "sharing_tour_price":sharing_tour_price,}
     return render( request, "tour/all_tours_grid.html", context )
 
 
